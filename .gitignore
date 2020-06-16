@@ -1,0 +1,16 @@
+*.class
+
+# Package Files #
+*.tar.gz
+*.war
+*.ear
+*_ru.properties
+*_es.properties
+/.derby-db/
+/build/
+/dist/
+/webapps/
+/import
+/export
+/installer
+/nbproject/private/

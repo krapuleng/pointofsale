@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    NORD POS is a fork of Openbravo POS.
+
+    Copyright (C) 2009-2016 Nord Trading Ltd. <http://www.nordpos.com>
+
+    This file is part of NORD POS.
+
+    NORD POS is free software: you can redistribute it and/or modify it under the
+    terms of the GNU General Public License as published by the Free Software
+    Foundation, either version 3 of the License, or (at your option) any later
+    version.
+
+    NORD POS is distributed in the hope that it will be useful, but WITHOUT ANY
+    WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+    A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along with
+    NORD POS. If not, see <http://www.gnu.org/licenses/>.
+ -->
+<permissions>
+    <class name="com.openbravo.pos.sales.JPanelTicketSales"/>
+    <class name="com.openbravo.pos.sales.JPanelTicketEdits"/>
+    <class name="com.openbravo.pos.customers.CustomersPayment"/>
+    <class name="com.openbravo.pos.panels.JPanelPayments"/>
+    <class name="com.openbravo.pos.panels.JPanelCloseMoney"/>
+    <class name="/com/openbravo/reports/closedpos.bsh"/>
+    <class name="sales.EditLines"/>
+    <class name="sales.RefundTicket"/>
+    <class name="sales.PrintTicket"/>
+    <class name="sales.Total"/>
+    <class name="sales.Discount"/>
+    <class name="sales.DiscountMulti"/>
+    <class name="payment.cash"/>
+    <class name="payment.cheque"/>
+    <class name="payment.paper"/>
+    <class name="payment.magcard"/>
+    <class name="payment.free"/>
+    <class name="payment.debt"/>
+    <class name="refund.cash"/>
+    <class name="refund.cheque"/>
+    <class name="refund.paper"/>
+    <class name="refund.magcard"/>
+    <class name="com.openbravo.pos.forms.MenuCustomers"/>
+    <class name="com.openbravo.pos.customers.CustomersPanel"/>
+    <class name="/com/openbravo/reports/customers.bsh"/>
+    <class name="/com/openbravo/reports/customersb.bsh"/>
+    <class name="/com/openbravo/reports/customersdiary.bsh"/>
+    <class name="com.openbravo.pos.inventory.TaxCustCategoriesPanel"/>
+    <class name="com.openbravo.pos.forms.MenuStockManagement"/>
+    <class name="com.openbravo.pos.inventory.ProductsPanel"/>
+    <class name="com.openbravo.pos.inventory.ProductsWarehousePanel"/>
+    <class name="com.openbravo.pos.inventory.CategoriesPanel"/>
+    <class name="com.openbravo.pos.inventory.AttributesPanel"/>
+    <class name="com.openbravo.pos.inventory.AttributeValuesPanel"/>
+    <class name="com.openbravo.pos.inventory.AttributeSetsPanel"/>
+    <class name="com.openbravo.pos.inventory.AttributeUsePanel"/>
+    <class name="com.openbravo.pos.inventory.TaxPanel"/>
+    <class name="com.openbravo.pos.inventory.TaxCategoriesPanel"/>
+    <class name="com.openbravo.pos.inventory.StockDiaryPanel"/>
+    <class name="com.openbravo.pos.inventory.StockManagement"/>
+    <class name="com.openbravo.pos.inventory.AuxiliarPanel"/>
+    <class name="/com/openbravo/reports/products.bsh"/>
+    <class name="/com/openbravo/reports/productlabels.bsh"/>
+    <class name="/com/nordpos/reports/productslist.bsh"/>
+    <class name="/com/openbravo/reports/inventory.bsh"/>
+    <class name="/com/openbravo/reports/inventoryb.bsh"/>
+    <class name="/com/openbravo/reports/inventorybroken.bsh"/>
+    <class name="/com/openbravo/reports/inventorylistdetail.bsh"/>
+    <class name="/com/openbravo/reports/inventorydiff.bsh"/>
+    <class name="/com/openbravo/reports/inventorydiffdetail.bsh"/>
+    <class name="com.openbravo.pos.forms.MenuSalesManagement"/>
+<!--    <class name="/com/openbravo/reports/transregister.bsh"/> -->
+    <class name="/com/openbravo/reports/usersales.bsh"/>
+    <class name="/com/openbravo/reports/closedproducts.bsh"/>
+    <class name="/com/openbravo/reports/taxes.bsh"/>
+<!--    <class name="/com/openbravo/reports/salecatalog.bsh"/> -->
+    <class name="/com/openbravo/reports/chartsales.bsh"/>
+    <class name="/com/nordpos/reports/piesalescat.bsh"/>
+    <class name="Menu.ChangePassword"/>
+    <class name="button.print"/>
+    <class name="button.opendrawer"/>
+
+</permissions>

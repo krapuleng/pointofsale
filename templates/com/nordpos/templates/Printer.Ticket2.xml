@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    NORD POS is a fork of Openbravo POS.
+
+    Copyright (C) 2009-2016 Nord Trading Ltd. <http://www.nordpos.com>
+
+    This file is part of NORD POS.
+
+    NORD POS is free software: you can redistribute it and/or modify it under the
+    terms of the GNU General Public License as published by the Free Software
+    Foundation, either version 3 of the License, or (at your option) any later
+    version.
+
+    NORD POS is distributed in the hope that it will be useful, but WITHOUT ANY
+    WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+    A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along with
+    NORD POS. If not, see <http://www.gnu.org/licenses/>.
+-->
+<output xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+   xsi:noNamespaceSchemaLocation="Schema.Printer.xsd">
+    <display>
+        <line1>
+            <text align="left" length="10">${local.getScriptString("sale.total")}</text>
+            <text align ="right" length="10">${ticket.printTotal()}</text>
+        </line1>  
+    #foreach ($paymentline in $ticket.payments) 
+     #if ($paymentline.name == "cash")  
+        <line2>
+            <text align="left" length="10">${local.getScriptString("paid.cash.change")}</text>
+            <text align ="right" length="10">${paymentline.printChange()}</text>
+        </line2>
+     #else
+        <line2>
+            <text align ="center" length="20">${local.getScriptString("sale.thankyou")}</text>
+        </line2>
+     #end
+    #end 
+    </display>
+    
+    #foreach ($paymentline in $ticket.payments)      
+     #if ($paymentline.name == "cash")
+    <opendrawer/>
+     #end
+     #if ($paymentline.name == "cashrefund")
+    <opendrawer/>
+     #end  
+    #end
+    
+</output>
