@@ -80,8 +80,10 @@ public class JRootFrame extends javax.swing.JFrame implements AppMessage {
         }
     }
     
+    @Override
     public void restoreWindow() throws RemoteException {
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 if (getExtendedState() == JFrame.ICONIFIED) {
                     setExtendedState(JFrame.NORMAL);

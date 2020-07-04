@@ -2166,7 +2166,7 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCustomer;
     private javax.swing.JButton btnSplit;
-    protected javax.swing.JPanel catcontainer;
+    private javax.swing.JPanel catcontainer;
     private javax.swing.Box.Filler filler2;
     private javax.swing.JButton jEditAttributes;
     private javax.swing.JPanel jPanel1;
