@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<entity-mappings v="5.4.2" rws="_15944024075102" Pws="_15944024075102" cws="_15944024075102" persistenceUnitName="DEFAULT_PU" sm="false" xs="false" id="_15944024075101" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <beanClass abs="false" class="InventoryRecord" v="true" xre="false" m="false" rootElement="_15944024075101" id="_159440540844987">
+        <attributes>
+            <basic attribute-type="java.util.Date" v="true" am="PRIVATE" name="m_dDate" jbt="false" id="_159440540846288"/>
+            <one-to-one-assoc connected-class-id="_159440246665914" v="true" am="PRIVATE" name="m_reason" jbt="false" id="_159440540847189"/>
+            <one-to-one-assoc connected-class-id="_159440248782121" v="true" am="PRIVATE" name="m_locationOri" jbt="false" id="_159440540847990"/>
+            <many-to-many-assoc collection-type="java.util.List" connected-class-id="_159440254551331" v="true" xvt="" am="PRIVATE" name="m_invlines" pname="m_invlines" jbt="false" id="_159440254550530">
+                <xwm/>
+                <xm/>
+            </many-to-many-assoc>
+            <many-to-many-assoc collection-type="java.util.List" connected-class-id="_159440254551331" v="true" xvt="" am="PRIVATE" name="m_invlines" jbt="false" id="_159440540849491">
+                <xwm/>
+                <xm/>
+            </many-to-many-assoc>
+        </attributes>
+    </beanClass>
+    <beanClass abs="false" class="MovementReason" superclassId="_159440246667515" v="true" xre="false" m="false" rootElement="_15944024075101" id="_159440246665914">
+        <attributes/>
+    </beanClass>
+    <beanClass abs="false" class="ComboItemLocal" v="true" xre="false" m="false" rootElement="_15944024075101" id="_159440246667515">
+        <attributes>
+            <basic attribute-type="java.lang.Integer" v="true" am="PROTECTED" name="m_iKey" jbt="false" id="_159440247525016"/>
+            <basic attribute-type="java.lang.String" v="true" am="PROTECTED" name="m_sKeyValue" jbt="false" id="_159440248592919"/>
+        </attributes>
+    </beanClass>
+    <beanClass abs="false" class="LocationInfo" v="true" xre="false" m="false" rootElement="_15944024075101" id="_159440248782121">
+        <attributes>
+            <basic attribute-type="java.lang.String" v="true" am="PRIVATE" name="m_sID" jbt="false" id="_159440249448122"/>
+            <basic attribute-type="java.lang.String" v="true" am="PRIVATE" name="m_sName" jbt="false" id="_159440250246323"/>
+            <basic attribute-type="java.lang.String" v="true" am="PRIVATE" name="m_sAddress" jbt="false" id="_159440251197324"/>
+            <basic attribute-type="boolean" v="true" am="PRIVATE" name="m_bClose" jbt="false" id="_159440251456925"/>
+            <basic attribute-type="java.lang.String" v="true" am="PRIVATE" name="ID" jbt="false" id="_159440252315426"/>
+            <basic attribute-type="java.lang.String" v="true" am="PRIVATE" name="name" jbt="false" id="_159440253347527"/>
+            <basic attribute-type="java.lang.String" v="true" am="PRIVATE" name="address" jbt="false" id="_159440254319128"/>
+            <basic attribute-type="boolean" v="true" am="PRIVATE" name="close" jbt="false" id="_159440254549729"/>
+        </attributes>
+    </beanClass>
+    <beanClass abs="false" class="InventoryLine" v="true" xre="false" m="false" rootElement="_15944024075101" id="_159440254551331">
+        <attributes>
+            <basic attribute-type="double" v="true" xvt="" am="PRIVATE" name="m_dMultiply" jbt="false" id="_159440254551432">
+                <xwm/>
+                <xm/>
+            </basic>
+            <basic attribute-type="double" v="true" am="PRIVATE" name="m_dPriceBuy" jbt="false" id="_159440254551433"/>
+            <basic attribute-type="double" v="true" am="PRIVATE" name="m_dPriceSell" jbt="false" id="_159440254551434"/>
+            <basic attribute-type="double" v="true" am="PRIVATE" name="m_dStockQty" jbt="false" id="_159440254551435"/>
+            <basic attribute-type="java.lang.String" v="true" am="PRIVATE" name="m_sProdID" jbt="false" id="_159440254669436"/>
+            <basic attribute-type="java.lang.String" v="true" am="PRIVATE" name="m_sProdName" jbt="false" id="_159440254820237"/>
+            <basic attribute-type="java.lang.String" v="true" am="PRIVATE" name="m_sProdCode" jbt="false" id="_159440254972638"/>
+            <basic attribute-type="java.lang.String" v="true" am="PRIVATE" name="m_sProdRef" jbt="false" id="_159440255118039"/>
+            <basic attribute-type="java.lang.String" v="true" am="PRIVATE" name="attsetid" jbt="false" id="_159440255264840"/>
+            <basic attribute-type="java.lang.String" v="true" am="PRIVATE" name="attsetinstid" jbt="false" id="_159440255421041"/>
+            <basic attribute-type="java.lang.String" v="true" am="PRIVATE" name="attsetinstdesc" jbt="false" id="_159440255637742"/>
+            <basic attribute-type="java.lang.String" v="true" am="PRIVATE" name="productName" jbt="false" id="_159440255827243"/>
+            <basic attribute-type="double" v="true" am="PRIVATE" name="multiply" jbt="false" id="_159440255862744"/>
+            <basic attribute-type="double" v="true" am="PRIVATE" name="stockQty" jbt="false" id="_159440255862745"/>
+            <basic attribute-type="double" v="true" am="PRIVATE" name="priceBuy" jbt="false" id="_159440255862746"/>
+            <basic attribute-type="java.lang.String" v="true" am="PRIVATE" name="productAttSetInstId" jbt="false" id="_159440255996047"/>
+            <basic attribute-type="java.lang.String" v="true" am="PRIVATE" name="productAttSetInstDesc" jbt="false" id="_159440256159448"/>
+        </attributes>
+    </beanClass>
+    <beanClass abs="false" class="LocationsView" v="true" xre="false" m="false" rootElement="_15944024075101" id="_159440540849592">
+        <ext e="true" n="javax.swing.JPanel"/>
+        <attributes>
+            <basic attribute-type="java.lang.String" v="true" am="PRIVATE" name="m_sID" jbt="false" id="_159440542263593"/>
+        </attributes>
+    </beanClass>
+    <beanClass abs="false" class="TaxCategoryInfo" v="true" xre="false" m="false" rootElement="_15944024075101" id="_1594405522739100">
+        <attributes>
+            <basic attribute-type="java.lang.String" v="true" am="PRIVATE" name="m_sID" jbt="false" id="_1594405527326101"/>
+            <basic attribute-type="java.lang.String" v="true" am="PRIVATE" name="m_sName" jbt="false" id="_1594405533593102"/>
+            <basic attribute-type="java.lang.String" v="true" am="PRIVATE" name="ID" jbt="false" id="_1594405539810103"/>
+            <basic attribute-type="java.lang.String" v="true" am="PRIVATE" name="name" jbt="false" id="_1594405545331104"/>
+        </attributes>
+    </beanClass>
+    <beanClass abs="false" class="AttributeUsePanel" pclass="AttributeUsePanel" v="true" xre="false" m="false" rootElement="_15944024075101" id="_1594405546735105">
+        <attributes>
+            <one-to-one-assoc connected-class-id="_159440268856864" v="true" am="PRIVATE" name="editor" jbt="false" id="_1594405549802106"/>
+        </attributes>
+    </beanClass>
+    <beanClass abs="false" class="AttributeUseEditor" v="true" xre="false" m="false" rootElement="_15944024075101" id="_159440268856864">
+        <attributes/>
+    </beanClass>
+    <beanClass abs="false" class="AttributeSetFilter" v="true" xre="false" m="false" rootElement="_15944024075101" id="_1594405553160108">
+        <attributes/>
+    </beanClass>
+    <beanClass abs="false" class="StockManagement" v="true" xre="false" m="false" rootElement="_15944024075101" id="_1594405596130135">
+        <attributes>
+            <one-to-one-assoc connected-class-id="_1594405599961137" v="true" am="PRIVATE" name="m_App" jbt="false" id="_1594405598874136"/>
+        </attributes>
+    </beanClass>
+    <beanClass abs="false" class="AppView" pclass="AppView" v="true" xre="false" m="false" rootElement="_15944024075101" id="_1594405599961137">
+        <attributes>
+            <element-collection ct="java.util.List" attribute-type="java.lang.String" v="true" name="attributes" pname="attributes" id="_1594406764164250"/>
+        </attributes>
+    </beanClass>
+    <beanClass abs="false" class="DataLogicSystem" v="true" xre="false" m="false" rootElement="_15944024075101" id="_1594405603142139">
+        <attributes>
+            <basic attribute-type="java.lang.String" v="true" am="PROTECTED" name="m_sInitScript" jbt="false" id="_1594405605805140"/>
+        </attributes>
+    </beanClass>
+    <wsl>
+        <ws n="Main" id="_15944024075102">
+            <i ref="_159440254551331" x="274" y="339"/>
+            <i ref="_159440540844987" x="522" y="120"/>
+            <i ref="_1594405553160108" x="2832" y="120"/>
+            <i ref="_159440540849592" x="2235" y="120"/>
+            <i ref="_1594405603142139" x="1925" y="120"/>
+            <i ref="_159440246665914" x="274" y="32"/>
+            <i ref="_159440268856864" x="1426" y="120"/>
+            <i ref="_1594405599961137" x="977" y="120"/>
+            <i ref="_1594405596130135" x="1173" y="339"/>
+            <i ref="_159440246667515" x="32" y="120"/>
+            <i ref="_159440248782121" x="761" y="339"/>
+            <i ref="_1594405546735105" x="1676" y="339"/>
+            <i ref="_1594405522739100" x="2529" y="120"/>
+        </ws>
+    </wsl>
+</entity-mappings>

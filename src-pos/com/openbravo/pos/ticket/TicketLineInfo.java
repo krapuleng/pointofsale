@@ -46,40 +46,41 @@ public class TicketLineInfo implements SerializableWrite, SerializableRead, Seri
     private int m_iLine;
     private double multiply;
     private double price;
+    private double costprice;
     private TaxInfo tax;
     private Properties attributes;
     private String productid;
-    private String attsetinstid;
+    private String attsetinstid = "";
 
     /** Creates new TicketLineInfo */
-    public TicketLineInfo(String productid, double dMultiply, double dPrice, TaxInfo tax, Properties props) {
-        init(productid, null, dMultiply, dPrice, tax, props);
+    public TicketLineInfo(String productid, double dMultiply, double dPrice,double costprice,TaxInfo tax, Properties props) {
+        init(productid, null, dMultiply, dPrice,costprice,tax, props);
     }
 
-    public TicketLineInfo(String productid, double dMultiply, double dPrice, TaxInfo tax) {
-        init(productid, null, dMultiply, dPrice, tax, new Properties());
+    public TicketLineInfo(String productid, double dMultiply, double dPrice,double cprice,TaxInfo tax) {
+        init(productid, null, dMultiply, dPrice, cprice, tax, new Properties());
     }
 
-    public TicketLineInfo(String productid, String productname, String producttaxcategory, double dMultiply, double dPrice, TaxInfo tax) {
+    public TicketLineInfo(String productid, String productname, String producttaxcategory, double dMultiply, double dPrice,double cprice, TaxInfo tax) {
         Properties props = new Properties();
         props.setProperty("product.name", productname);
         props.setProperty("product.taxcategoryid", producttaxcategory);
-        init(productid, null, dMultiply, dPrice, tax, props);
+        init(productid, null, dMultiply, dPrice,cprice, tax, props);
     }
 
-    public TicketLineInfo(String productname, String producttaxcategory, double dMultiply, double dPrice, TaxInfo tax) {
+    public TicketLineInfo(String productname, String producttaxcategory, double dMultiply, double dPrice,double cprice, TaxInfo tax) {
 
         Properties props = new Properties();
         props.setProperty("product.name", productname);
         props.setProperty("product.taxcategoryid", producttaxcategory);
-        init(null, null, dMultiply, dPrice, tax, props);
+        init(null, null, dMultiply, dPrice,cprice,tax, props);
     }
 
     public TicketLineInfo() {
-        init(null, null, 0.0, 0.0, null, new Properties());
+        init(null, null, 0.0, 0.0,0.0,null, new Properties());
     }
 
-    public TicketLineInfo(ProductInfoExt product, double dMultiply, double dPrice, TaxInfo tax, Properties attributes) {
+    public TicketLineInfo(ProductInfoExt product, double dMultiply, double dPrice,double cprice,TaxInfo tax, Properties attributes) {
 
         String pid;
 
@@ -107,23 +108,24 @@ public class TicketLineInfo implements SerializableWrite, SerializableRead, Seri
                 attributes.setProperty("product.categoryid", product.getCategoryID());
             }
         }
-        init(pid, null, dMultiply, dPrice, tax, attributes);
+        init(pid, null, dMultiply, dPrice,cprice, tax, attributes);
     }
 
-    public TicketLineInfo(ProductInfoExt oProduct, double dPrice, TaxInfo tax, Properties attributes) {
-        this(oProduct, 1.0, dPrice, tax, attributes);
+    public TicketLineInfo(ProductInfoExt oProduct, double dPrice, double cprice,TaxInfo tax, Properties attributes) {
+        this(oProduct, 1.0, dPrice,cprice, tax, attributes);
     }
 
     public TicketLineInfo(TicketLineInfo line) {
-        init(line.productid, line.attsetinstid, line.multiply, line.price, line.tax, (Properties) line.attributes.clone());
+        init(line.productid, line.attsetinstid, line.multiply, line.price,line.costprice, line.tax, (Properties) line.attributes.clone());
     }
 
-    private void init(String productid, String attsetinstid, double dMultiply, double dPrice, TaxInfo tax, Properties attributes) {
+    private void init(String productid, String attsetinstid, double dMultiply, double dPrice, double cprice,TaxInfo tax, Properties attributes) {
 
         this.productid = productid;
         this.attsetinstid = attsetinstid;
         multiply = dMultiply;
         price = dPrice;
+        costprice = cprice;
         this.tax = tax;
         this.attributes = attributes;
 
@@ -183,6 +185,7 @@ public class TicketLineInfo implements SerializableWrite, SerializableRead, Seri
         l.attsetinstid = attsetinstid;
         l.multiply = multiply;
         l.price = price;
+        l.costprice = costprice;
         l.tax = tax;
         l.attributes = (Properties) attributes.clone();
         return l;
@@ -319,9 +322,15 @@ public class TicketLineInfo implements SerializableWrite, SerializableRead, Seri
     public double getPrice() {
         return RoundUtils.round(price);
     }
+    public double getCostPrice() {
+        return RoundUtils.round(costprice);
+    }
 
     public void setPrice(double dValue) {
         price = RoundUtils.round(dValue);
+    }
+      public void setCostPrice(double dValue) {
+        costprice = RoundUtils.round(dValue);
     }
 
     public double getPriceTax() {

@@ -78,7 +78,7 @@ public class StockManagement extends JPanel implements JPanelView {
 
     private TaxesLogic taxeslogic;
 
-    private final CatalogSelector m_cat;
+    //private final CatalogSelector m_cat;
     private final PropertiesConfig panelconfig;
     private final ComboBoxValModel m_ReasonModel;
 
@@ -124,13 +124,13 @@ public class StockManagement extends JPanel implements JPanelView {
 
         panelconfig = new PropertiesConfig(m_dlSystem.getResourceAsXML("Ticket.Buttons"));
 
-        m_cat = new JCatalog(m_dlSales, panelconfig);
+    /*    m_cat = new JCatalog(m_dlSales, panelconfig);
         m_cat.getComponent().setPreferredSize(new Dimension(0, 245));
         m_cat.addActionListener(new CatalogListener());
-        catcontainer.add(m_cat.getComponent(), BorderLayout.CENTER);
-        catcontainer.setPreferredSize(new Dimension(
-                0,
-                Integer.parseInt(panelconfig.getProperty("cat-height", "200"))));
+        catcontainer.add(m_cat.getComponent(), BorderLayout.CENTER);*/
+        //catcontainer.setPreferredSize(new Dimension(
+         //       0,
+         //       Integer.parseInt(panelconfig.getProperty("cat-height", "200"))));
 
         // Las lineas de inventario
         m_invlines = new JInventoryLines();
@@ -149,7 +149,7 @@ public class StockManagement extends JPanel implements JPanelView {
 
     @Override
     public void activate() throws BasicException {
-        m_cat.loadCatalog(m_App);
+        //m_cat.loadCatalog(m_App);
 
         taxeslogic = new TaxesLogic(m_dlSales.getTaxList().list());
 
@@ -378,6 +378,7 @@ public class StockManagement extends JPanel implements JPanelView {
                 inv.getProductID(),
                 inv.getProductAttSetInstId(),
                 rec.getReason().samesignum(inv.getMultiply()),
+                inv.getPriceSell(),
                 inv.getPriceBuy()
             });
         }
@@ -552,7 +553,6 @@ public class StockManagement extends JPanel implements JPanelView {
         m_jDown = new javax.swing.JButton();
         m_jEditLine = new javax.swing.JButton();
         jEditAttributes = new javax.swing.JButton();
-        catcontainer = new javax.swing.JPanel();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -589,6 +589,8 @@ public class StockManagement extends JPanel implements JPanelView {
         jPanel4.add(m_jEnter, gridBagConstraints);
 
         m_jcodebar.setBackground(java.awt.Color.white);
+        m_jcodebar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        m_jcodebar.setForeground(new java.awt.Color(51, 51, 255));
         m_jcodebar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         m_jcodebar.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1)));
         m_jcodebar.setOpaque(true);
@@ -713,6 +715,8 @@ public class StockManagement extends JPanel implements JPanelView {
 
         jPanel3.add(jPanel8, java.awt.BorderLayout.NORTH);
 
+        jPanel5.setForeground(new java.awt.Color(0, 0, 255));
+        jPanel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jPanel5.setLayout(new java.awt.BorderLayout());
 
         m_jDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/locationbar_erase.png"))); // NOI18N
@@ -805,21 +809,15 @@ public class StockManagement extends JPanel implements JPanelView {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                        .addContainerGap(236, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(21, Short.MAX_VALUE))))
         );
 
         jPanel3.add(jPanel9, java.awt.BorderLayout.CENTER);
 
         add(jPanel3, java.awt.BorderLayout.CENTER);
-
-        catcontainer.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        catcontainer.setLayout(new java.awt.BorderLayout());
-        add(catcontainer, java.awt.BorderLayout.SOUTH);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDownloadProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDownloadProductsActionPerformed
@@ -857,24 +855,6 @@ public class StockManagement extends JPanel implements JPanelView {
             }
         });
     }//GEN-LAST:event_m_jreasonActionPerformed
-
-    private void m_jDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jDownActionPerformed
-
-        m_invlines.goDown();
-
-    }//GEN-LAST:event_m_jDownActionPerformed
-
-    private void m_jUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jUpActionPerformed
-
-        m_invlines.goUp();
-
-    }//GEN-LAST:event_m_jUpActionPerformed
-
-    private void m_jDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jDeleteActionPerformed
-
-        deleteLine(m_invlines.getSelectedRow());
-
-    }//GEN-LAST:event_m_jDeleteActionPerformed
 
     private void m_jEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jEnterActionPerformed
 
@@ -917,16 +897,6 @@ private void m_jcodebarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:
     });
 }//GEN-LAST:event_m_jcodebarMouseClicked
 
-private void jEditAttributesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditAttributesActionPerformed
-
-    int i = m_invlines.getSelectedRow();
-    if (i < 0) {
-        Toolkit.getDefaultToolkit().beep(); // no line selected
-    } else {
-        openAttributesEditor(i);
-    }
-}//GEN-LAST:event_jEditAttributesActionPerformed
-
     private void m_jKeyFactoryKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_m_jKeyFactoryKeyTyped
         m_jKeyFactory.setText(null);
         stateTransition(evt.getKeyChar());
@@ -963,6 +933,16 @@ private void jEditAttributesActionPerformed(java.awt.event.ActionEvent evt) {//G
         });
     }//GEN-LAST:event_m_jLocationDesActionPerformed
 
+    private void jEditAttributesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditAttributesActionPerformed
+
+        int i = m_invlines.getSelectedRow();
+        if (i < 0) {
+            Toolkit.getDefaultToolkit().beep(); // no line selected
+        } else {
+            openAttributesEditor(i);
+        }
+    }//GEN-LAST:event_jEditAttributesActionPerformed
+
     private void m_jEditLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jEditLineActionPerformed
 
         int i = m_invlines.getSelectedRow();
@@ -981,9 +961,23 @@ private void jEditAttributesActionPerformed(java.awt.event.ActionEvent evt) {//G
         }
     }//GEN-LAST:event_m_jEditLineActionPerformed
 
+    private void m_jDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jDownActionPerformed
+
+        m_invlines.goDown();
+    }//GEN-LAST:event_m_jDownActionPerformed
+
+    private void m_jUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jUpActionPerformed
+
+        m_invlines.goUp();
+    }//GEN-LAST:event_m_jUpActionPerformed
+
+    private void m_jDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jDeleteActionPerformed
+
+        deleteLine(m_invlines.getSelectedRow());
+    }//GEN-LAST:event_m_jDeleteActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDownloadProducts;
-    private javax.swing.JPanel catcontainer;
     private javax.swing.JButton jEditAttributes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

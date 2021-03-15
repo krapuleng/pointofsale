@@ -450,9 +450,9 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
         }
     }
 
-    private void addTicketLine(ProductInfoExt oProduct, double dMul, double dPrice) {
+    private void addTicketLine(ProductInfoExt oProduct, double dMul, double dPrice, double cprice) {
         TaxInfo tax = taxeslogic.getTaxInfo(oProduct.getTaxCategoryID(), m_oTicket.getDate(), m_oTicket.getCustomer());
-        addTicketLine(new TicketLineInfo(oProduct, dMul, dPrice, tax, (java.util.Properties) (oProduct.getProperties().clone())));
+        addTicketLine(new TicketLineInfo(oProduct, dMul, dPrice,cprice,tax, (java.util.Properties) (oProduct.getProperties().clone())));
     }
 
     protected void addTicketLine(TicketLineInfo oLine) {
@@ -613,7 +613,7 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
         incProductByCodeUnit(sCode, 1.0);
     }
     
-    private void incProductByCodePrice(String sCode, double dPriceSell) {
+    private void incProductByCodePrice(String sCode, double dPriceSell, double costprice) {
         // precondicion: sCode != null
 
         try {
@@ -627,9 +627,9 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
                 if (m_jaddtax.isSelected()) {
                     // debemos quitarle los impuestos ya que el precio es con iva incluido...
                     TaxInfo tax = taxeslogic.getTaxInfo(oProduct.getTaxCategoryID(), m_oTicket.getDate(), m_oTicket.getCustomer());
-                    addTicketLine(oProduct, 1.0, dPriceSell / (1.0 + tax.getRate()));
+                    addTicketLine(oProduct, 1.0, dPriceSell / (1.0 + tax.getRate()), costprice);
                 } else {
-                    addTicketLine(oProduct, 1.0, dPriceSell);
+                    addTicketLine(oProduct, 1.0, dPriceSell,costprice);
                 }
             }
         } catch (BasicException eData) {
@@ -643,14 +643,15 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
             ProductInfoExt oProduct = dlSales.getProductInfoByCode(sCode);
             if (oProduct == null) {
                 Toolkit.getDefaultToolkit().beep();
+
                 new MessageInf(MessageInf.SGN_WARNING, AppLocal.getIntString("message.noproduct")).show(this);
                 stateToZero();
             } else {
                 if (m_jaddtax.isSelected()) {
                     TaxInfo tax = taxeslogic.getTaxInfo(oProduct.getTaxCategoryID(), m_oTicket.getDate(), m_oTicket.getCustomer());
-                    addTicketLine(oProduct, dUnitSell, oProduct.getPriceSellTax(tax) / (1.0 + tax.getRate()));
+                    addTicketLine(oProduct, dUnitSell, oProduct.getPriceSellTax(tax) / (1.0 + tax.getRate()),oProduct.getPriceBuy());
                 } else {
-                    addTicketLine(oProduct, dUnitSell, oProduct.getPriceSell());
+                    addTicketLine(oProduct, dUnitSell, oProduct.getPriceSell(), oProduct.getPriceBuy());
                 }
             }
         } catch (BasicException eData) {
@@ -680,7 +681,7 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
 
     private void incProduct(double dPor, ProductInfoExt prod) {
         // precondicion: prod != null
-        addTicketLine(prod, dPor, prod.getPriceSell());
+        addTicketLine(prod, dPor, prod.getPriceSell(),prod.getPriceBuy());
     }
 
     protected void buttonTransition(ProductInfoExt prod) {
@@ -728,7 +729,7 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
         }
     }
     
-    private void stateTransition(char cTrans) {
+ private void stateTransition(char cTrans) {
 
         try
         { 
@@ -826,7 +827,7 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
         }
         
     }
-
+    
     private boolean closeTicket(TicketInfo ticket, Object ticketext) throws BasicException {
 
         boolean resultok = false;
