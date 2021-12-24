@@ -29,9 +29,9 @@ import com.openbravo.beans.LocaleResources;
  */
 public class AppLocal {
 
-    public static final String APP_NAME = "NORD POS";
+    public static final String APP_NAME = "BIZAPP POS";
     public static final String APP_ID = "nordpos";
-    public static final String APP_VERSION = "3.1.0CE";
+    public static final String APP_VERSION = "4.0";
 
     private static final LocaleResources m_resources;
 

@@ -303,8 +303,8 @@ public class JRootApp extends JPanel implements AppView {
         m_jLblDescriptionSecond.setIcon(imgdesclogo2 == null ? null : new ImageIcon(imgdesclogo2));
         m_jLblDescriptionSecond.setText(DataLogicSystem.getResourceAsText("Window.DescriptionSecond"));
 
-        BufferedImage imgpoweredby = DataLogicSystem.getResourceAsImage("Window.PoweredBy");
-        m_jLblPoweredBy.setIcon(imgpoweredby == null ? new ImageIcon(getClass().getResource("/com/openbravo/images/poweredby.png")) : new ImageIcon(imgpoweredby));
+        //BufferedImage imgpoweredby = DataLogicSystem.getResourceAsImage("Window.PoweredBy");
+        //m_jLblPoweredBy.setIcon(imgpoweredby == null ? new ImageIcon(getClass().getResource("/com/openbravo/images/poweredby.png")) : new ImageIcon(imgpoweredby));
 
         BufferedImage imgsupportby = DataLogicSystem.getResourceAsImage("Window.SupportBy");
         m_jLblSupportBy.setIcon(imgsupportby == null ? null : new ImageIcon(imgsupportby));

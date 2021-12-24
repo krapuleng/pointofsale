@@ -45,12 +45,13 @@ public class AppViewConnection {
         try{
 
             // register the database driver
-            if (isJavaWebStart()) {
-                Class.forName(props.getDBDriver(), true, Thread.currentThread().getContextClassLoader());
-            } else {
+            //if (isJavaWebStart()) {
+                //Class.forName(props.getDBDriver(), true, Thread.currentThread().getContextClassLoader());
+                //Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            //} else {
                 ClassLoader cloader = new URLClassLoader(new URL[]{new File(props.getDBDriverLib()).toURI().toURL()});
                 DriverManager.registerDriver(new DriverWrapper((Driver) Class.forName(props.getDBDriver(), true, cloader).newInstance()));
-            }
+            //}
 
             String sDBUser = props.getDBUser();
             String sDBPassword = props.getDBPassword();
