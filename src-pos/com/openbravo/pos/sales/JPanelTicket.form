@@ -1114,6 +1114,7 @@
                 <EmptyBorder bottom="5" left="5" right="5" top="5"/>
               </Border>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>

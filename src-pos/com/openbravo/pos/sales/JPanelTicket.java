@@ -1951,6 +1951,7 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
         m_jPanContainer.add(m_jContEntries, java.awt.BorderLayout.LINE_END);
 
         catcontainer.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        catcontainer.setEnabled(false);
         catcontainer.setLayout(new java.awt.BorderLayout());
         m_jPanContainer.add(catcontainer, java.awt.BorderLayout.SOUTH);
 

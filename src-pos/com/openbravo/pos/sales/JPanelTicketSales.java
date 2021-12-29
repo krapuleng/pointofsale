@@ -47,7 +47,7 @@ public class JPanelTicketSales extends JPanelTicket {
     @Override
     public void init(AppView app) {
         super.init(app);
-        m_ticketlines.addListSelectionListener(new CatalogSelectionListener());
+        //m_ticketlines.addListSelectionListener(new CatalogSelectionListener());
     }
     
     public String getTitle() {

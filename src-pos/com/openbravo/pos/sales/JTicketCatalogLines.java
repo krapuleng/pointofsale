@@ -55,10 +55,10 @@ public class JTicketCatalogLines extends javax.swing.JPanel {
         m_reflines = new JRefundLines(dlSystem, jTicketEdit);        
         add(m_reflines, "reflines");
         
-        m_catalog = new JCatalog(dlSales, panelconfig);
-        m_catalog.getComponent().setPreferredSize(new Dimension(0, 245));
+        //m_catalog = new JCatalog(dlSales, panelconfig);
+        //m_catalog.getComponent().setPreferredSize(new Dimension(0, 245));
         // m_catalog.addActionListener(new CatalogListener());        
-        add(m_catalog.getComponent(), "catalog");
+        //add(m_catalog.getComponent(), "catalog");
     }
     
     public void showCatalog() {
