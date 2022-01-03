@@ -65,7 +65,7 @@ public class JPanelTicketSales extends JPanelTicket {
 
     protected void resetSouthComponent() {
         if ("false".equals(panelconfig.getProperty("catvisible")) == false) {
-        m_cat.showCatalogPanel(null);
+//        m_cat.showCatalogPanel(null);
     }
     }
     
@@ -76,9 +76,9 @@ public class JPanelTicketSales extends JPanelTicket {
     @Override
     public void activate() throws BasicException {      
         super.activate();
-        if ("false".equals(panelconfig.getProperty("catvisible")) == false) {
+   /*     if ("false".equals(panelconfig.getProperty("catvisible")) == false) {
             m_cat.loadCatalog(m_App);
-        }
+        }*/
     }
     
     private class CatalogListener implements ActionListener {

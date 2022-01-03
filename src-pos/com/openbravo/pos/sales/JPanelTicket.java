@@ -148,8 +148,8 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
     private Double m_dDiscountMoney1;
     private Double m_dDiscountMoney2;
     private Double m_dDiscountMoney3;
-
     private Boolean bTypeDiscountMoney;
+    
 
     private static final Logger logger = Logger.getLogger(JPanelTicket.class.getName());
 
@@ -161,7 +161,7 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
 
     @Override
     public void init(AppView app) throws BeanFactoryException {
-        m_jbtnDiscountRate.setText(AppLocal.getIntString("button.ticketdiscount"));
+        //m_jbtnDiscountRate.setText(AppLocal.getIntString("button.ticketdiscount"));
         m_App = app;
         dlSystem = (DataLogicSystem) m_App.getBean(DataLogicSystem.class.getName());
         dlSales = (DataLogicSales) m_App.getBean(DataLogicSales.class.getName());
@@ -187,14 +187,13 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
 
         // El panel de los productos o de las lineas...
         if ("false".equals(panelconfig.getProperty("catvisible")) == false) {
-            catcontainer.add(getSouthComponent(), BorderLayout.CENTER);
+            //catcontainer.add(getSouthComponent(), BorderLayout.CENTER);
             //m_jImage.setVisible(false);
         } else {
             //m_jImage.setVisible(true);
         }
-
+        /*
         bTypeDiscountRate = false;
-
         m_jbtnDiscountRate.setText(AppLocal.getIntString("button.ticketdiscount"));
 
         if ("true".equals(panelconfig.getProperty("discount-rate-visible", "true")) || "true".equals(panelconfig.getProperty("discountvisible"))) {
@@ -202,7 +201,7 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
         } else {
             m_jDiscountRatePanel.setVisible(false);
         }
-
+       
         m_dDiscountRate1 = Double.parseDouble(panelconfig.getProperty("discountrate-1", "5")) / 100;
         m_dDiscountRate2 = Double.parseDouble(panelconfig.getProperty("discountrate-2", "10")) / 100;
         m_dDiscountRate3 = Double.parseDouble(panelconfig.getProperty("discountrate-3", "15")) / 100;
@@ -219,7 +218,7 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
 
         m_dDiscountMoney1 = Double.parseDouble(panelconfig.getProperty("discountmoney-1", "1"));
         m_dDiscountMoney2 = Double.parseDouble(panelconfig.getProperty("discountmoney-2", "5"));
-        m_dDiscountMoney3 = Double.parseDouble(panelconfig.getProperty("discountmoney-3", "10"));
+        m_dDiscountMoney3 = Double.parseDouble(panelconfig.getProperty("discountmoney-3", "10")); */
 
         // El modelo de impuestos
         senttax = dlSales.getTaxList();
@@ -298,27 +297,29 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
         m_jbtnconfig.setPermissions(m_App.getAppUserView().getUser());
 
         // Permissões para desconto
+        /*
         m_jDiscount1.setEnabled(m_App.getAppUserView().getUser().hasPermission("sales.Discount"));
         m_jDiscount2.setEnabled(m_App.getAppUserView().getUser().hasPermission("sales.Discount"));
         m_jDiscount3.setEnabled(m_App.getAppUserView().getUser().hasPermission("sales.Discount"));
         m_jKeypadDiscountRate.setEnabled(m_App.getAppUserView().getUser().hasPermission("sales.DiscountMulti"));
         //m_jbtnDiscount.setEnabled(m_App.getAppUserView().getUser().hasPermission("sales.Discount") || m_App.getAppUserView().getUser().hasPermission("sales.DiscountMulti"));
-
+        */
         // Valores para descontos
-        m_jDiscount1.setText(Formats.PERCENT.formatValue(m_dDiscountRate1));
-        m_jDiscount2.setText(Formats.PERCENT.formatValue(m_dDiscountRate2));
-        m_jDiscount3.setText(Formats.PERCENT.formatValue(m_dDiscountRate3));
-        m_jDisableDiscountRate.setText(Formats.PERCENT.formatValue(0.0));
+        //m_jDiscount1.setText(Formats.PERCENT.formatValue(m_dDiscountRate1));
+        //m_jDiscount2.setText(Formats.PERCENT.formatValue(m_dDiscountRate2));
+        //m_jDiscount3.setText(Formats.PERCENT.formatValue(m_dDiscountRate3));
+        //m_jDisableDiscountRate.setText(Formats.PERCENT.formatValue(0.0));
 
-        m_jDiscount4.setEnabled(m_App.getAppUserView().getUser().hasPermission("sales.Discount"));
-        m_jDiscount5.setEnabled(m_App.getAppUserView().getUser().hasPermission("sales.Discount"));
-        m_jDiscount6.setEnabled(m_App.getAppUserView().getUser().hasPermission("sales.Discount"));
-        m_jKeypadDiscountMoney.setEnabled(m_App.getAppUserView().getUser().hasPermission("sales.DiscountMulti"));
+        //m_jDiscount4.setEnabled(m_App.getAppUserView().getUser().hasPermission("sales.Discount"));
+        //m_jDiscount5.setEnabled(m_App.getAppUserView().getUser().hasPermission("sales.Discount"));
+        //m_jDiscount6.setEnabled(m_App.getAppUserView().getUser().hasPermission("sales.Discount"));
+        
+       // m_jKeypadDiscountMoney.setEnabled(m_App.getAppUserView().getUser().hasPermission("sales.DiscountMulti"));
 
-        m_jDiscount4.setText(Formats.CURRENCY.formatValue(m_dDiscountMoney1));
-        m_jDiscount5.setText(Formats.CURRENCY.formatValue(m_dDiscountMoney2));
-        m_jDiscount6.setText(Formats.CURRENCY.formatValue(m_dDiscountMoney3));
-        m_jDisableDiscountMoney.setText(Formats.CURRENCY.formatValue(0.0));
+        //m_jDiscount4.setText(Formats.CURRENCY.formatValue(m_dDiscountMoney1));
+        //m_jDiscount5.setText(Formats.CURRENCY.formatValue(m_dDiscountMoney2));
+        //m_jDiscount6.setText(Formats.CURRENCY.formatValue(m_dDiscountMoney3));
+        //m_jDisableDiscountMoney.setText(Formats.CURRENCY.formatValue(0.0));
 
         m_ticketsbag.activate();
     }
@@ -384,8 +385,8 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
                     m_jEditLine.setVisible(false);
                     m_jList.setVisible(false);
                     jEditAttributes.setVisible(false);
-                    m_jDiscountRatePanel.setVisible(false);
-                    m_jDiscountMoneyPanel.setVisible(false);
+                  //  m_jDiscountRatePanel.setVisible(false);
+                  //  m_jDiscountMoneyPanel.setVisible(false);
                 } else {
                     m_jDelete.setVisible(true);
                     m_jEditLine.setVisible(true);
@@ -1304,7 +1305,6 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
         m_jButtonsExt = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         m_jbtnScale = new javax.swing.JButton();
-        m_jPanelBag = new javax.swing.JPanel();
         m_jPanTicket = new javax.swing.JPanel();
         m_jPanelCentral = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -1315,7 +1315,9 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
         m_jTaxesEuros = new javax.swing.JLabel();
         m_jLblTotalEuros2 = new javax.swing.JLabel();
         m_jLblTotalEuros3 = new javax.swing.JLabel();
-        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(1, 0), new java.awt.Dimension(1, 0), new java.awt.Dimension(1, 32767));
+        m_jPanelBag = new javax.swing.JPanel();
+        m_jEnter = new javax.swing.JButton();
+        m_jPrice = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         m_jDelete = new javax.swing.JButton();
@@ -1324,31 +1326,14 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
         m_jList = new javax.swing.JButton();
         m_jEditLine = new javax.swing.JButton();
         jEditAttributes = new javax.swing.JButton();
-        m_jDiscountRatePanel = new javax.swing.JPanel();
-        m_jbtnDiscountRate = new javax.swing.JButton();
-        m_jDisableDiscountRate = new javax.swing.JButton();
-        m_jDiscount1 = new javax.swing.JButton();
-        m_jDiscount2 = new javax.swing.JButton();
-        m_jDiscount3 = new javax.swing.JButton();
-        m_jKeypadDiscountRate = new javax.swing.JButton();
-        m_jDiscountMoneyPanel = new javax.swing.JPanel();
-        m_jbtnDiscountMoney = new javax.swing.JButton();
-        m_jDisableDiscountMoney = new javax.swing.JButton();
-        m_jDiscount4 = new javax.swing.JButton();
-        m_jDiscount5 = new javax.swing.JButton();
-        m_jDiscount6 = new javax.swing.JButton();
-        m_jKeypadDiscountMoney = new javax.swing.JButton();
         m_jContEntries = new javax.swing.JPanel();
         m_jPanEntries = new javax.swing.JPanel();
         m_jNumberKeys = new com.openbravo.beans.JNumberKeys();
-        m_jPrice = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        m_jPor = new javax.swing.JLabel();
-        m_jEnter = new javax.swing.JButton();
         m_jTax = new javax.swing.JComboBox();
+        m_jPor = new javax.swing.JLabel();
         m_jaddtax = new javax.swing.JToggleButton();
         m_jKeyFactory = new javax.swing.JTextField();
-        catcontainer = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 204, 153));
         setLayout(new java.awt.CardLayout());
@@ -1414,9 +1399,6 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
 
         m_jOptions.add(m_jPanelScripts, java.awt.BorderLayout.LINE_END);
 
-        m_jPanelBag.setLayout(new java.awt.BorderLayout());
-        m_jOptions.add(m_jPanelBag, java.awt.BorderLayout.CENTER);
-
         m_jPanContainer.add(m_jOptions, java.awt.BorderLayout.NORTH);
 
         m_jPanTicket.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 5, 5, 0));
@@ -1426,73 +1408,124 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
 
         jPanel4.setLayout(new java.awt.BorderLayout());
 
-        m_jTotalEuros.setFont(m_jTotalEuros.getFont().deriveFont(m_jTotalEuros.getFont().getStyle() | java.awt.Font.BOLD));
+        m_jPanTotals.setBorder(javax.swing.BorderFactory.createTitledBorder("Totals"));
+        m_jPanTotals.setName(""); // NOI18N
+
+        m_jTotalEuros.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        m_jTotalEuros.setForeground(new java.awt.Color(0, 0, 255));
         m_jTotalEuros.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         m_jTotalEuros.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(javax.swing.UIManager.getDefaults().getColor("Button.darkShadow")), javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 4)));
         m_jTotalEuros.setOpaque(true);
         m_jTotalEuros.setPreferredSize(new java.awt.Dimension(150, 25));
         m_jTotalEuros.setRequestFocusEnabled(false);
 
+        m_jLblTotalEuros1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         m_jLblTotalEuros1.setText(AppLocal.getIntString("label.totalcash")); // NOI18N
 
+        m_jSubtotalEuros.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        m_jSubtotalEuros.setForeground(new java.awt.Color(0, 0, 255));
         m_jSubtotalEuros.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         m_jSubtotalEuros.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(javax.swing.UIManager.getDefaults().getColor("Button.darkShadow")), javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 4)));
         m_jSubtotalEuros.setOpaque(true);
         m_jSubtotalEuros.setPreferredSize(new java.awt.Dimension(150, 25));
         m_jSubtotalEuros.setRequestFocusEnabled(false);
 
+        m_jTaxesEuros.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        m_jTaxesEuros.setForeground(new java.awt.Color(0, 0, 255));
         m_jTaxesEuros.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         m_jTaxesEuros.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(javax.swing.UIManager.getDefaults().getColor("Button.darkShadow")), javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 4)));
         m_jTaxesEuros.setOpaque(true);
         m_jTaxesEuros.setPreferredSize(new java.awt.Dimension(150, 25));
         m_jTaxesEuros.setRequestFocusEnabled(false);
 
+        m_jLblTotalEuros2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         m_jLblTotalEuros2.setText(AppLocal.getIntString("label.taxcash")); // NOI18N
 
+        m_jLblTotalEuros3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         m_jLblTotalEuros3.setText(AppLocal.getIntString("label.subtotalcash")); // NOI18N
 
         javax.swing.GroupLayout m_jPanTotalsLayout = new javax.swing.GroupLayout(m_jPanTotals);
         m_jPanTotals.setLayout(m_jPanTotalsLayout);
         m_jPanTotalsLayout.setHorizontalGroup(
             m_jPanTotalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, m_jPanTotalsLayout.createSequentialGroup()
+            .addGroup(m_jPanTotalsLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(m_jLblTotalEuros2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(m_jPanTotalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(m_jSubtotalEuros, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                    .addComponent(m_jLblTotalEuros3))
+                .addGap(18, 18, 18)
+                .addGroup(m_jPanTotalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(m_jLblTotalEuros2)
+                    .addComponent(m_jTaxesEuros, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(m_jPanTotalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(m_jTaxesEuros, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(filler2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(m_jPanTotalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(m_jLblTotalEuros1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(m_jLblTotalEuros3, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(m_jPanTotalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(m_jSubtotalEuros, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(m_jTotalEuros, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0))
+                    .addComponent(m_jTotalEuros, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(m_jLblTotalEuros1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         m_jPanTotalsLayout.setVerticalGroup(
             m_jPanTotalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(m_jPanTotalsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(m_jPanTotalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(m_jPanTotalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                        .addComponent(m_jLblTotalEuros3)
-                        .addComponent(m_jSubtotalEuros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(m_jTaxesEuros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(m_jLblTotalEuros2))
+                .addGap(11, 11, 11)
+                .addGroup(m_jPanTotalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(m_jTotalEuros, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .addComponent(m_jSubtotalEuros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(m_jTaxesEuros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(m_jPanTotalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(m_jPanTotalsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(m_jLblTotalEuros2)
                     .addComponent(m_jLblTotalEuros1)
-                    .addComponent(m_jTotalEuros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(m_jLblTotalEuros3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel4.add(m_jPanTotals, java.awt.BorderLayout.LINE_END);
 
         m_jPanelCentral.add(jPanel4, java.awt.BorderLayout.SOUTH);
+
+        m_jPanelBag.setBorder(javax.swing.BorderFactory.createTitledBorder("Barcode"));
+        m_jPanelBag.setForeground(new java.awt.Color(0, 0, 255));
+        m_jPanelBag.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        m_jEnter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/barcode.png"))); // NOI18N
+        m_jEnter.setFocusPainted(false);
+        m_jEnter.setFocusable(false);
+        m_jEnter.setRequestFocusEnabled(false);
+        m_jEnter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                m_jEnterActionPerformed(evt);
+            }
+        });
+
+        m_jPrice.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        m_jPrice.setForeground(new java.awt.Color(0, 0, 255));
+        m_jPrice.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        m_jPrice.setToolTipText("Barcode");
+        m_jPrice.setOpaque(true);
+        m_jPrice.setPreferredSize(new java.awt.Dimension(100, 22));
+        m_jPrice.setRequestFocusEnabled(false);
+
+        javax.swing.GroupLayout m_jPanelBagLayout = new javax.swing.GroupLayout(m_jPanelBag);
+        m_jPanelBag.setLayout(m_jPanelBagLayout);
+        m_jPanelBagLayout.setHorizontalGroup(
+            m_jPanelBagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, m_jPanelBagLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(m_jPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(m_jEnter, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        m_jPanelBagLayout.setVerticalGroup(
+            m_jPanelBagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(m_jPanelBagLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(m_jPanelBagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(m_jEnter, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(m_jPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        m_jPanelCentral.add(m_jPanelBag, java.awt.BorderLayout.PAGE_START);
 
         m_jPanTicket.add(m_jPanelCentral, java.awt.BorderLayout.CENTER);
 
@@ -1609,229 +1642,12 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
 
         jPanel5.add(jPanel2);
 
-        m_jDiscountRatePanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 3, 0, 2));
-
-        m_jbtnDiscountRate.setFocusPainted(false);
-        m_jbtnDiscountRate.setFocusable(false);
-        m_jbtnDiscountRate.setMaximumSize(new java.awt.Dimension(74, 44));
-        m_jbtnDiscountRate.setMinimumSize(new java.awt.Dimension(74, 44));
-        m_jbtnDiscountRate.setPreferredSize(new java.awt.Dimension(74, 44));
-        m_jbtnDiscountRate.setRequestFocusEnabled(false);
-        m_jbtnDiscountRate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                m_jbtnDiscountRateActionPerformed(evt);
-            }
-        });
-
-        m_jDisableDiscountRate.setFocusPainted(false);
-        m_jDisableDiscountRate.setFocusable(false);
-        m_jDisableDiscountRate.setMaximumSize(new java.awt.Dimension(74, 44));
-        m_jDisableDiscountRate.setMinimumSize(new java.awt.Dimension(74, 44));
-        m_jDisableDiscountRate.setPreferredSize(new java.awt.Dimension(74, 44));
-        m_jDisableDiscountRate.setRequestFocusEnabled(false);
-        m_jDisableDiscountRate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                m_jDisableDiscountRateActionPerformed(evt);
-            }
-        });
-
-        m_jDiscount1.setFocusPainted(false);
-        m_jDiscount1.setFocusable(false);
-        m_jDiscount1.setMaximumSize(new java.awt.Dimension(74, 44));
-        m_jDiscount1.setMinimumSize(new java.awt.Dimension(74, 44));
-        m_jDiscount1.setPreferredSize(new java.awt.Dimension(74, 44));
-        m_jDiscount1.setRequestFocusEnabled(false);
-        m_jDiscount1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                m_jDiscount1ActionPerformed(evt);
-            }
-        });
-
-        m_jDiscount2.setFocusPainted(false);
-        m_jDiscount2.setFocusable(false);
-        m_jDiscount2.setMaximumSize(new java.awt.Dimension(74, 44));
-        m_jDiscount2.setMinimumSize(new java.awt.Dimension(74, 44));
-        m_jDiscount2.setPreferredSize(new java.awt.Dimension(74, 44));
-        m_jDiscount2.setRequestFocusEnabled(false);
-        m_jDiscount2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                m_jDiscount2ActionPerformed(evt);
-            }
-        });
-
-        m_jDiscount3.setFocusPainted(false);
-        m_jDiscount3.setFocusable(false);
-        m_jDiscount3.setMaximumSize(new java.awt.Dimension(74, 44));
-        m_jDiscount3.setMinimumSize(new java.awt.Dimension(74, 44));
-        m_jDiscount3.setPreferredSize(new java.awt.Dimension(74, 44));
-        m_jDiscount3.setRequestFocusEnabled(false);
-        m_jDiscount3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                m_jDiscount3ActionPerformed(evt);
-            }
-        });
-
-        m_jKeypadDiscountRate.setText("...");
-        m_jKeypadDiscountRate.setFocusPainted(false);
-        m_jKeypadDiscountRate.setFocusable(false);
-        m_jKeypadDiscountRate.setMaximumSize(new java.awt.Dimension(74, 44));
-        m_jKeypadDiscountRate.setMinimumSize(new java.awt.Dimension(74, 44));
-        m_jKeypadDiscountRate.setPreferredSize(new java.awt.Dimension(74, 44));
-        m_jKeypadDiscountRate.setRequestFocusEnabled(false);
-        m_jKeypadDiscountRate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                m_jKeypadDiscountRateActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout m_jDiscountRatePanelLayout = new javax.swing.GroupLayout(m_jDiscountRatePanel);
-        m_jDiscountRatePanel.setLayout(m_jDiscountRatePanelLayout);
-        m_jDiscountRatePanelLayout.setHorizontalGroup(
-            m_jDiscountRatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(m_jbtnDiscountRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(m_jDisableDiscountRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(m_jDiscount1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(m_jDiscount2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(m_jDiscount3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(m_jKeypadDiscountRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        m_jDiscountRatePanelLayout.setVerticalGroup(
-            m_jDiscountRatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(m_jDiscountRatePanelLayout.createSequentialGroup()
-                .addGap(2, 2, 2)
-                .addComponent(m_jbtnDiscountRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(m_jDisableDiscountRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(m_jDiscount1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(m_jDiscount2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(m_jDiscount3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(m_jKeypadDiscountRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel5.add(m_jDiscountRatePanel);
-
-        m_jDiscountMoneyPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 3, 0, 2));
-
-        m_jbtnDiscountMoney.setText("ROW");
-        m_jbtnDiscountMoney.setFocusPainted(false);
-        m_jbtnDiscountMoney.setFocusable(false);
-        m_jbtnDiscountMoney.setMaximumSize(new java.awt.Dimension(74, 44));
-        m_jbtnDiscountMoney.setMinimumSize(new java.awt.Dimension(74, 44));
-        m_jbtnDiscountMoney.setPreferredSize(new java.awt.Dimension(74, 44));
-        m_jbtnDiscountMoney.setRequestFocusEnabled(false);
-        m_jbtnDiscountMoney.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                m_jbtnDiscountMoneyActionPerformed(evt);
-            }
-        });
-
-        m_jDisableDiscountMoney.setText("0");
-        m_jDisableDiscountMoney.setFocusPainted(false);
-        m_jDisableDiscountMoney.setFocusable(false);
-        m_jDisableDiscountMoney.setMaximumSize(new java.awt.Dimension(74, 44));
-        m_jDisableDiscountMoney.setMinimumSize(new java.awt.Dimension(74, 44));
-        m_jDisableDiscountMoney.setPreferredSize(new java.awt.Dimension(74, 44));
-        m_jDisableDiscountMoney.setRequestFocusEnabled(false);
-        m_jDisableDiscountMoney.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                m_jDisableDiscountMoneyActionPerformed(evt);
-            }
-        });
-
-        m_jDiscount4.setFocusPainted(false);
-        m_jDiscount4.setFocusable(false);
-        m_jDiscount4.setMaximumSize(new java.awt.Dimension(74, 44));
-        m_jDiscount4.setMinimumSize(new java.awt.Dimension(74, 44));
-        m_jDiscount4.setPreferredSize(new java.awt.Dimension(74, 44));
-        m_jDiscount4.setRequestFocusEnabled(false);
-        m_jDiscount4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                m_jDiscount4ActionPerformed(evt);
-            }
-        });
-
-        m_jDiscount5.setFocusPainted(false);
-        m_jDiscount5.setFocusable(false);
-        m_jDiscount5.setMaximumSize(new java.awt.Dimension(74, 44));
-        m_jDiscount5.setMinimumSize(new java.awt.Dimension(74, 44));
-        m_jDiscount5.setPreferredSize(new java.awt.Dimension(74, 44));
-        m_jDiscount5.setRequestFocusEnabled(false);
-        m_jDiscount5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                m_jDiscount5ActionPerformed(evt);
-            }
-        });
-
-        m_jDiscount6.setFocusPainted(false);
-        m_jDiscount6.setFocusable(false);
-        m_jDiscount6.setMaximumSize(new java.awt.Dimension(74, 44));
-        m_jDiscount6.setMinimumSize(new java.awt.Dimension(74, 44));
-        m_jDiscount6.setPreferredSize(new java.awt.Dimension(74, 44));
-        m_jDiscount6.setRequestFocusEnabled(false);
-        m_jDiscount6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                m_jDiscount6ActionPerformed(evt);
-            }
-        });
-
-        m_jKeypadDiscountMoney.setText("...");
-        m_jKeypadDiscountMoney.setFocusPainted(false);
-        m_jKeypadDiscountMoney.setFocusable(false);
-        m_jKeypadDiscountMoney.setMaximumSize(new java.awt.Dimension(74, 44));
-        m_jKeypadDiscountMoney.setMinimumSize(new java.awt.Dimension(74, 44));
-        m_jKeypadDiscountMoney.setPreferredSize(new java.awt.Dimension(74, 44));
-        m_jKeypadDiscountMoney.setRequestFocusEnabled(false);
-        m_jKeypadDiscountMoney.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                m_jKeypadDiscountMoneyActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout m_jDiscountMoneyPanelLayout = new javax.swing.GroupLayout(m_jDiscountMoneyPanel);
-        m_jDiscountMoneyPanel.setLayout(m_jDiscountMoneyPanelLayout);
-        m_jDiscountMoneyPanelLayout.setHorizontalGroup(
-            m_jDiscountMoneyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(m_jDiscountMoneyPanelLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(m_jDiscountMoneyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(m_jbtnDiscountMoney, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(m_jDisableDiscountMoney, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(m_jDiscount4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(m_jDiscount5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(m_jDiscount6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(m_jKeypadDiscountMoney, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        m_jDiscountMoneyPanelLayout.setVerticalGroup(
-            m_jDiscountMoneyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(m_jDiscountMoneyPanelLayout.createSequentialGroup()
-                .addGap(2, 2, 2)
-                .addComponent(m_jbtnDiscountMoney, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(m_jDisableDiscountMoney, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(m_jDiscount4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(m_jDiscount5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(m_jDiscount6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(m_jKeypadDiscountMoney, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel5.add(m_jDiscountMoneyPanel);
-
         m_jPanTicket.add(jPanel5, java.awt.BorderLayout.LINE_END);
 
         m_jPanContainer.add(m_jPanTicket, java.awt.BorderLayout.CENTER);
 
         m_jContEntries.setMinimumSize(new java.awt.Dimension(250, 400));
         m_jContEntries.setPreferredSize(new java.awt.Dimension(250, 400));
-        m_jContEntries.setLayout(new java.awt.BorderLayout());
 
         m_jNumberKeys.addJNumberEventListener(new com.openbravo.beans.JNumberEventListener() {
             public void keyPerformed(com.openbravo.beans.JNumberEvent evt) {
@@ -1839,74 +1655,24 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
             }
         });
 
-        m_jPrice.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        m_jPrice.setForeground(new java.awt.Color(0, 0, 255));
-        m_jPrice.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        m_jPrice.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(javax.swing.UIManager.getDefaults().getColor("Button.darkShadow")), javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 4)));
-        m_jPrice.setOpaque(true);
-        m_jPrice.setPreferredSize(new java.awt.Dimension(100, 22));
-        m_jPrice.setRequestFocusEnabled(false);
-
         jPanel9.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        jPanel9.setLayout(new java.awt.GridBagLayout());
+
+        m_jTax.setFocusable(false);
+        m_jTax.setRequestFocusEnabled(false);
+        jPanel9.add(m_jTax);
 
         m_jPor.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         m_jPor.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(javax.swing.UIManager.getDefaults().getColor("Button.darkShadow")), javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 4)));
         m_jPor.setOpaque(true);
         m_jPor.setPreferredSize(new java.awt.Dimension(22, 22));
         m_jPor.setRequestFocusEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
-        jPanel9.add(m_jPor, gridBagConstraints);
-
-        m_jEnter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/barcode.png"))); // NOI18N
-        m_jEnter.setFocusPainted(false);
-        m_jEnter.setFocusable(false);
-        m_jEnter.setRequestFocusEnabled(false);
-        m_jEnter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                m_jEnterActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
-        jPanel9.add(m_jEnter, gridBagConstraints);
-
-        m_jTax.setFocusable(false);
-        m_jTax.setRequestFocusEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
-        jPanel9.add(m_jTax, gridBagConstraints);
+        jPanel9.add(m_jPor);
 
         m_jaddtax.setText("+");
         m_jaddtax.setFocusPainted(false);
         m_jaddtax.setFocusable(false);
         m_jaddtax.setRequestFocusEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 0);
-        jPanel9.add(m_jaddtax, gridBagConstraints);
+        jPanel9.add(m_jaddtax);
 
         m_jKeyFactory.setBackground(javax.swing.UIManager.getDefaults().getColor("Panel.background"));
         m_jKeyFactory.setForeground(javax.swing.UIManager.getDefaults().getColor("Panel.background"));
@@ -1924,36 +1690,39 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
         m_jPanEntriesLayout.setHorizontalGroup(
             m_jPanEntriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(m_jPanEntriesLayout.createSequentialGroup()
+                .addGap(249, 249, 249)
                 .addGroup(m_jPanEntriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(m_jNumberKeys, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(m_jKeyFactory, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(m_jKeyFactory, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(m_jPanEntriesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(m_jPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(m_jNumberKeys, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(256, 256, 256))
         );
         m_jPanEntriesLayout.setVerticalGroup(
             m_jPanEntriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(m_jPanEntriesLayout.createSequentialGroup()
-                .addComponent(m_jNumberKeys, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(m_jPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(m_jKeyFactory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(m_jNumberKeys, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(m_jKeyFactory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(158, 158, 158)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        m_jContEntries.add(m_jPanEntries, java.awt.BorderLayout.NORTH);
+        javax.swing.GroupLayout m_jContEntriesLayout = new javax.swing.GroupLayout(m_jContEntries);
+        m_jContEntries.setLayout(m_jContEntriesLayout);
+        m_jContEntriesLayout.setHorizontalGroup(
+            m_jContEntriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(m_jPanEntries, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        m_jContEntriesLayout.setVerticalGroup(
+            m_jContEntriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(m_jContEntriesLayout.createSequentialGroup()
+                .addComponent(m_jPanEntries, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 81, Short.MAX_VALUE))
+        );
 
         m_jPanContainer.add(m_jContEntries, java.awt.BorderLayout.LINE_END);
-
-        catcontainer.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        catcontainer.setEnabled(false);
-        catcontainer.setLayout(new java.awt.BorderLayout());
-        m_jPanContainer.add(catcontainer, java.awt.BorderLayout.SOUTH);
 
         add(m_jPanContainer, "ticket");
     }// </editor-fold>//GEN-END:initComponents
@@ -1963,57 +1732,6 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
         stateTransition('\u00a7');
 
     }//GEN-LAST:event_m_jbtnScaleActionPerformed
-
-    private void m_jEditLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jEditLineActionPerformed
-
-        int i = m_ticketlines.getSelectedIndex();
-        if (i < 0) {
-            Toolkit.getDefaultToolkit().beep(); // no line selected
-        } else {
-            try {
-                TicketLineInfo newline = JProductLineEdit.showMessage(this, m_App, m_oTicket.getLine(i));
-                if (newline != null) {
-                    // line has been modified
-                    paintTicketLine(i, newline);
-                }
-            } catch (BasicException e) {
-                new MessageInf(e).show(this);
-            }
-        }
-
-    }//GEN-LAST:event_m_jEditLineActionPerformed
-
-    private void m_jDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jDeleteActionPerformed
-
-        int i = m_ticketlines.getSelectedIndex();
-        if (i < 0) {
-            Toolkit.getDefaultToolkit().beep(); // No hay ninguna seleccionada
-        } else {
-            removeTicketLine(i); // elimino la linea
-        }
-
-    }//GEN-LAST:event_m_jDeleteActionPerformed
-
-    private void m_jUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jUpActionPerformed
-
-        m_ticketlines.selectionUp();
-
-    }//GEN-LAST:event_m_jUpActionPerformed
-
-    private void m_jDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jDownActionPerformed
-
-        m_ticketlines.selectionDown();
-
-    }//GEN-LAST:event_m_jDownActionPerformed
-
-    private void m_jListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jListActionPerformed
-
-        ProductInfoExt prod = JProductFinder.showMessage(JPanelTicket.this, dlSales);
-        if (prod != null) {
-            buttonTransition(prod);
-        }
-
-    }//GEN-LAST:event_m_jListActionPerformed
 
     private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
 
@@ -2054,6 +1772,22 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
         }
 }//GEN-LAST:event_btnSplitActionPerformed
 
+    private void m_jKeyFactoryKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_m_jKeyFactoryKeyTyped
+
+        m_jKeyFactory.setText(null);
+        stateTransition(evt.getKeyChar());
+    }//GEN-LAST:event_m_jKeyFactoryKeyTyped
+
+    private void m_jEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jEnterActionPerformed
+
+        stateTransition('\n');
+    }//GEN-LAST:event_m_jEnterActionPerformed
+
+    private void m_jNumberKeysKeyPerformed(com.openbravo.beans.JNumberEvent evt) {//GEN-FIRST:event_m_jNumberKeysKeyPerformed
+
+        stateTransition(evt.getKey());
+    }//GEN-LAST:event_m_jNumberKeysKeyPerformed
+
     private void jEditAttributesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditAttributesActionPerformed
 
         int i = m_ticketlines.getSelectedIndex();
@@ -2076,100 +1810,57 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
                 msg.show(this);
             }
         }
+    }//GEN-LAST:event_jEditAttributesActionPerformed
 
-}//GEN-LAST:event_jEditAttributesActionPerformed
+    private void m_jEditLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jEditLineActionPerformed
 
-    private void m_jbtnDiscountRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jbtnDiscountRateActionPerformed
-        if (bTypeDiscountRate == true) {
-            m_jbtnDiscountRate.setText(AppLocal.getIntString("button.ticketdiscount"));
-            bTypeDiscountRate = false;
-        } else if (bTypeDiscountRate == false) {
-            m_jbtnDiscountRate.setText(AppLocal.getIntString("button.rowdiscount"));
-            bTypeDiscountRate = true;
-        }
-}//GEN-LAST:event_m_jbtnDiscountRateActionPerformed
-
-    private void m_jDiscount1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jDiscount1ActionPerformed
-        performDiscountRate(m_dDiscountRate1);
-}//GEN-LAST:event_m_jDiscount1ActionPerformed
-
-    private void m_jDiscount2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jDiscount2ActionPerformed
-        performDiscountRate(m_dDiscountRate2);
-    }//GEN-LAST:event_m_jDiscount2ActionPerformed
-
-    private void m_jDiscount3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jDiscount3ActionPerformed
-        performDiscountRate(m_dDiscountRate3);
-    }//GEN-LAST:event_m_jDiscount3ActionPerformed
-
-    private void m_jKeypadDiscountRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jKeypadDiscountRateActionPerformed
-        Double dPercent = JPercentDialog.showEditPercent(this, AppLocal.getIntString("message.setdiscountrate"));
-        if (dPercent != null && dPercent != 0.0) {
-            performDiscountRate(dPercent);
+        int i = m_ticketlines.getSelectedIndex();
+        if (i < 0) {
+            Toolkit.getDefaultToolkit().beep(); // no line selected
         } else {
-            java.awt.Toolkit.getDefaultToolkit().beep();
+            try {
+                TicketLineInfo newline = JProductLineEdit.showMessage(this, m_App, m_oTicket.getLine(i));
+                if (newline != null) {
+                    // line has been modified
+                    paintTicketLine(i, newline);
+                }
+            } catch (BasicException e) {
+                new MessageInf(e).show(this);
+            }
         }
-}//GEN-LAST:event_m_jKeypadDiscountRateActionPerformed
+    }//GEN-LAST:event_m_jEditLineActionPerformed
 
-    private void m_jDisableDiscountRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jDisableDiscountRateActionPerformed
-        performDiscountRate(0.0);
-    }//GEN-LAST:event_m_jDisableDiscountRateActionPerformed
+    private void m_jListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jListActionPerformed
 
-    private void m_jbtnDiscountMoneyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jbtnDiscountMoneyActionPerformed
-        if (bTypeDiscountMoney == true) {
-            m_jbtnDiscountRate.setText(AppLocal.getIntString("button.ticketdiscount"));
-            bTypeDiscountMoney = false;
-        } else if (bTypeDiscountMoney == false) {
-            m_jbtnDiscountRate.setText(AppLocal.getIntString("button.rowdiscount"));
-            bTypeDiscountMoney = true;
+        ProductInfoExt prod = JProductFinder.showMessage(JPanelTicket.this, dlSales);
+        if (prod != null) {
+            buttonTransition(prod);
         }
-    }//GEN-LAST:event_m_jbtnDiscountMoneyActionPerformed
+    }//GEN-LAST:event_m_jListActionPerformed
 
-    private void m_jDisableDiscountMoneyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jDisableDiscountMoneyActionPerformed
-        performDiscountMoney(0.0);
-    }//GEN-LAST:event_m_jDisableDiscountMoneyActionPerformed
+    private void m_jDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jDownActionPerformed
 
-    private void m_jDiscount4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jDiscount4ActionPerformed
-        performDiscountMoney(m_dDiscountMoney1);
-    }//GEN-LAST:event_m_jDiscount4ActionPerformed
+        m_ticketlines.selectionDown();
+    }//GEN-LAST:event_m_jDownActionPerformed
 
-    private void m_jDiscount5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jDiscount5ActionPerformed
-        performDiscountMoney(m_dDiscountMoney2);
-    }//GEN-LAST:event_m_jDiscount5ActionPerformed
+    private void m_jUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jUpActionPerformed
 
-    private void m_jDiscount6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jDiscount6ActionPerformed
-        performDiscountMoney(m_dDiscountMoney3);
-    }//GEN-LAST:event_m_jDiscount6ActionPerformed
+        m_ticketlines.selectionUp();
+    }//GEN-LAST:event_m_jUpActionPerformed
 
-    private void m_jKeypadDiscountMoneyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jKeypadDiscountMoneyActionPerformed
-        Double dPercent = JNumberDialog.showEditNumber(this, AppLocal.getIntString("message.setdiscountmoney"));
-        if (dPercent != null && dPercent != 0.0) {
-            performDiscountMoney(dPercent);
+    private void m_jDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jDeleteActionPerformed
+
+        int i = m_ticketlines.getSelectedIndex();
+        if (i < 0) {
+            Toolkit.getDefaultToolkit().beep(); // No hay ninguna seleccionada
         } else {
-            java.awt.Toolkit.getDefaultToolkit().beep();
+            removeTicketLine(i); // elimino la linea
         }
-    }//GEN-LAST:event_m_jKeypadDiscountMoneyActionPerformed
-
-    private void m_jKeyFactoryKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_m_jKeyFactoryKeyTyped
-
-        m_jKeyFactory.setText(null);
-        stateTransition(evt.getKeyChar());
-    }//GEN-LAST:event_m_jKeyFactoryKeyTyped
-
-    private void m_jEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jEnterActionPerformed
-
-        stateTransition('\n');
-    }//GEN-LAST:event_m_jEnterActionPerformed
-
-    private void m_jNumberKeysKeyPerformed(com.openbravo.beans.JNumberEvent evt) {//GEN-FIRST:event_m_jNumberKeysKeyPerformed
-
-        stateTransition(evt.getKey());
-    }//GEN-LAST:event_m_jNumberKeysKeyPerformed
+    }//GEN-LAST:event_m_jDeleteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCustomer;
     private javax.swing.JButton btnSplit;
-    private javax.swing.JPanel catcontainer;
-    private javax.swing.Box.Filler filler2;
     private javax.swing.JButton jEditAttributes;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -2180,22 +1871,10 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
     private javax.swing.JPanel m_jButtonsExt;
     private javax.swing.JPanel m_jContEntries;
     private javax.swing.JButton m_jDelete;
-    private javax.swing.JButton m_jDisableDiscountMoney;
-    private javax.swing.JButton m_jDisableDiscountRate;
-    private javax.swing.JButton m_jDiscount1;
-    private javax.swing.JButton m_jDiscount2;
-    private javax.swing.JButton m_jDiscount3;
-    private javax.swing.JButton m_jDiscount4;
-    private javax.swing.JButton m_jDiscount5;
-    private javax.swing.JButton m_jDiscount6;
-    private javax.swing.JPanel m_jDiscountMoneyPanel;
-    private javax.swing.JPanel m_jDiscountRatePanel;
     private javax.swing.JButton m_jDown;
     private javax.swing.JButton m_jEditLine;
     private javax.swing.JButton m_jEnter;
     private javax.swing.JTextField m_jKeyFactory;
-    private javax.swing.JButton m_jKeypadDiscountMoney;
-    private javax.swing.JButton m_jKeypadDiscountRate;
     private javax.swing.JLabel m_jLblTotalEuros1;
     private javax.swing.JLabel m_jLblTotalEuros2;
     private javax.swing.JLabel m_jLblTotalEuros3;
@@ -2218,8 +1897,6 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
     private javax.swing.JLabel m_jTotalEuros;
     private javax.swing.JButton m_jUp;
     private javax.swing.JToggleButton m_jaddtax;
-    private javax.swing.JButton m_jbtnDiscountMoney;
-    private javax.swing.JButton m_jbtnDiscountRate;
     private javax.swing.JButton m_jbtnScale;
     // End of variables declaration//GEN-END:variables
 }
