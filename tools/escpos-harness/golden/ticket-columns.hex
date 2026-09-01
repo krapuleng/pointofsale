@@ -1,0 +1,54 @@
+# END TO END through the REAL TicketParser, driving the REAL ReceiptPrinterEmulator via
+# machine.printer=escpos:file,<temp>. Fixture: fixtures/columns-ticket.xml, 128 bytes.
+#
+# This is the fixture that proves, against the shipped parser rather than against a mock:
+#   (a) the driver emits NO ESC a around text - TicketParser has already aligned and space
+#       padded every run in software via StringUtils.alignLeft/alignCenter/alignRight;
+#   (b) it does not re-pad or re-wrap - the three runs sum to exactly 42 columns and
+#       arrive as 42 raw bytes;
+#   (c) an empty <line></line> is a bare LF;
+#   (d) the roll is cut exactly ONCE despite six <text> elements each firing the
+#       TicketParser cutPaper fall through.
+1B 40      # ESC @      initialise
+1B 74 13   # ESC t 19   code page 19 = PC858 Euro
+1B 52 00   # ESC R 0    international character set 0
+1B 61 00   # ESC a 0    justification left
+1B 21 00   # ESC ! 0    print mode reset
+1D 61 00   # GS a 0     disable automatic status back
+
+# --- line 1: <line> with three runs, 20 + 10 + 12 = 42. beginLine(0) emits nothing. ---
+# <text length="20">ITEM</text>  ->  alignLeft("ITEM", 20)
+49 54 45 4D                                       # "ITEM"
+20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20   # 16 trailing spaces
+# <text length="10" align="center">QTY</text>  ->  alignCenter("QTY", 10)
+#   alignCenter pads (10-3)/2 = 3 on the right first, then right aligns to 10,
+#   so the result is 4 leading and 3 trailing spaces - NOT a symmetric 3/4 split.
+20 20 20 20            # 4 leading spaces
+51 54 59               # "QTY"
+20 20 20               # 3 trailing spaces
+# <text length="12" align="right">AMOUNT</text>  ->  alignRight("AMOUNT", 12)
+20 20 20 20 20 20      # 6 leading spaces
+41 4D 4F 55 4E 54      # "AMOUNT"
+0A                     # LF   endLine, line size 0, so no GS ! follows
+
+# --- line 2: <line></line>, an empty spacer. beginLine(0), no <text>, endLine. ---
+0A                     # LF   a bare line feed, and no cutPaper fired at all
+
+# --- line 3: <line size="1"> with two bold runs, 30 + 12 = 42. ---
+1D 21 01               # GS ! 0x01   line size 1 = double height
+# <text length="30" bold="true">TOTAL</text>  ->  alignLeft("TOTAL", 30)
+1B 45 01               # ESC E 1     bold on
+54 4F 54 41 4C         # "TOTAL"
+20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20   # 16 of the 25 trailing spaces
+20 20 20 20 20 20 20 20 20                        # the remaining 9
+1B 45 00               # ESC E 0     bold off
+# <text length="12" align="right" bold="true">42.00</text>  ->  alignRight("42.00", 12)
+1B 45 01               # ESC E 1     bold on
+20 20 20 20 20 20 20   # 7 leading spaces
+34 32 2E 30 30         # "42.00"
+1B 45 00               # ESC E 0     bold off
+0A                     # LF          fed while double height is still selected
+1D 21 00               # GS ! 0      clear character size AFTER the feed
+
+1B 64 04   # ESC d 4   feed 4 lines
+1D 56 01   # GS V 1    the one and only cut

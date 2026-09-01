@@ -1,0 +1,13 @@
+# FULL JOB. profile=epson, cp=legacy, cut=none, feed=0
+# body: printText(12, "none", false, "é")
+# cp=legacy routes encoding through com.nordpos.device.traslator.UnicodeTranslatorInt, the
+# abstraction this codebase has carried for years with no caller. UnicodeTranslatorInt maps
+# e acute to -0x7E = 0x82, which is byte identical to CP858 - which is why cp=legacy pairs
+# with ESC t 19 and not with some other page.
+1B 40      # ESC @      initialise
+1B 74 13   # ESC t 19   code page 19 = PC858 Euro
+1B 52 00   # ESC R 0    international character set 0
+1B 61 00   # ESC a 0    justification left
+1B 21 00   # ESC ! 0    print mode reset
+1D 61 00   # GS a 0     disable automatic status back
+82         # e acute, via UnicodeTranslatorInt.transChar -> -0x7E

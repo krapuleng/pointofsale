@@ -1,0 +1,9 @@
+# printBarCode("EAN13", "top", "4006381333931")   -- body only
+1B 61 01   # ESC a 1    centre
+1D 48 01   # GS H 1     HRI characters above the barcode   ("top")
+1D 66 00   # GS f 0     HRI font A
+1D 68 A2   # GS h 162   barcode height
+1D 77 03   # GS w 3     module width
+1D 6B 43 0C   # GS k 67 12   EAN13, 12 data bytes
+34 30 30 36 33 38 31 33 33 33 39 33   # "400638133393"
+1B 61 00   # ESC a 0    back to left

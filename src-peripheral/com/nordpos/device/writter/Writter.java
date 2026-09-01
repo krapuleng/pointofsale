@@ -34,6 +34,12 @@ public abstract class Writter {
 
     private final ExecutorService exec;
 
+    // Writes run on a private single-thread ExecutorService and every throwable dies there,
+    // so the caller needs an out-of-band way to ask whether the last job was delivered.
+    // Convention for subclasses: setLastError(null) on a successful flush,
+    // setLastError(<human-readable, actionable>) on any failure.
+    private volatile String m_sLastError = null;
+
     public Writter() {
         exec = Executors.newSingleThreadExecutor();
     }
@@ -81,5 +87,13 @@ public abstract class Writter {
             }
         });
         exec.shutdown();
+    }
+
+    protected void setLastError(String sError) {
+        m_sLastError = sError;
+    }
+
+    public String getLastError() {
+        return m_sLastError;
     }
 }

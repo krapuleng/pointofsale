@@ -1,0 +1,8 @@
+# beginLine(2); printText(1, "none", false, "AB"); endLine()   -- body only
+# A text level size override restores the CURRENT LINE's size, not 0.
+1D 21 10   # GS ! 0x10   line size 2: double width, normal height
+1D 21 01   # GS ! 0x01   text override size 1: normal width, double height
+41 42      # "AB"
+1D 21 10   # GS ! 0x10   restore the LINE size, not 0x00
+0A         # LF          feed happens while the tall/wide mode is still in effect
+1D 21 00   # GS ! 0      clear character size AFTER the feed

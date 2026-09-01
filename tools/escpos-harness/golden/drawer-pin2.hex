@@ -1,0 +1,6 @@
+# openDrawer() with no receipt in flight, drawer=pin2 (default), drawerpulse=50 (default)
+# This is a COMPLETE STANDALONE JOB, not a body: TicketParser calls openDrawer() with no
+# surrounding beginReceipt/endReceipt, so the driver builds and flushes its own job.
+1B 40         # ESC @       initialise, so a printer left mid command does not eat the kick
+1B 70 00 19 FA   # ESC p 0 25 250   drawer kick, connector pin 2,
+                 #                  t1 = 50 ms / 2 = 25 (0x19) ON, t2 fixed 250 (0xFA) OFF

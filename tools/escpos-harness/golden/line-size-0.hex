@@ -1,0 +1,3 @@
+# beginLine(0); endLine()   -- body only
+# Size 0 emits no GS ! at all, in either direction. Ordinary lines carry no command noise.
+0A   # LF

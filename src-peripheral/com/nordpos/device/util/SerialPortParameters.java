@@ -88,4 +88,29 @@ public class SerialPortParameters {
                 return SerialPort.PARITY_NONE;
         }
     }
+
+    /**
+     * The SerialPort.FLOWCONTROL_* fields are static final int compile-time
+     * constants and are inlined by javac, so referencing them does NOT trigger
+     * gnu.io class initialisation - the same property that already makes this
+     * class safe to call on an arm64 JVM where the native cannot load.
+     *
+     * @param sFlowControl none, xonxoff or rtscts
+     * @return the gnu.io flow control mode
+     */
+    public static int getFlowControl(String sFlowControl) {
+        if (sFlowControl == null) {
+            return SerialPort.FLOWCONTROL_NONE;
+        }
+        switch (sFlowControl) {
+            case "none":
+                return SerialPort.FLOWCONTROL_NONE;
+            case "xonxoff":
+                return SerialPort.FLOWCONTROL_XONXOFF_IN | SerialPort.FLOWCONTROL_XONXOFF_OUT;
+            case "rtscts":
+                return SerialPort.FLOWCONTROL_RTSCTS_IN | SerialPort.FLOWCONTROL_RTSCTS_OUT;
+            default:
+                return SerialPort.FLOWCONTROL_NONE;
+        }
+    }
 }

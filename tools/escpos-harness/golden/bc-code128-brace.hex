@@ -1,0 +1,14 @@
+# printBarCode("CODE128", "bottom", "A{B")   -- body only
+# A literal '{' inside a CODE128 payload must be doubled, or the printer reads it as the
+# start of a code set escape. The length byte counts the escape, so n is 6 not 5.
+1B 61 01   # ESC a 1    centre
+1D 48 02   # GS H 2     HRI below
+1D 66 00   # GS f 0     HRI font A
+1D 68 A2   # GS h 162   barcode height
+1D 77 03   # GS w 3     module width
+1D 6B 49 06   # GS k 73 6   symbology 73 = CODE128, 6 data bytes
+7B 42      # "{B"    select code set B
+41         # "A"
+7B 7B      # "{{"    one literal '{' in the payload, escaped
+42         # "B"
+1B 61 00   # ESC a 0    back to left

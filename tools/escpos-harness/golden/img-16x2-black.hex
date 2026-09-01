@@ -1,0 +1,9 @@
+# printImage(a 16 x 2 all black TYPE_INT_RGB image)   -- body only
+# widthBytes = (16 + 7) / 8 = 2. Two rows, band default 128, so one GS v 0 command.
+# xL/xH is the width in BYTES little endian; yL/yH the row count little endian.
+1B 61 01                  # ESC a 1     centre
+1D 76 30 00 02 00 02 00   # GS v 0 0    raster bit image, mode 0 = normal, 2 bytes wide, 2 rows
+FF FF                     # row 0: 16 black dots, a set bit is a black dot
+FF FF                     # row 1
+1B 61 00                  # ESC a 0     back to left
+                          # NOTE: no trailing LF. GS v 0 leaves the position on the next line.

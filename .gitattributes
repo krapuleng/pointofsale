@@ -1,0 +1,33 @@
+# Line endings are pinned per extension on purpose. `* text=auto` is deliberately
+# NOT used: every tracked text file here is already pure LF, so renormalising the
+# whole index would produce one enormous unrelated diff. Only what we ship or care
+# about is declared. CRLF on .cmd/.bat is load-bearing (an LF-only batch file
+# mis-parses labels and multi-line if blocks on some Windows shells) and LF on
+# .sh/.command is equally load-bearing (CRLF gives "bad interpreter: /bin/sh^M").
+
+*.sh         text eol=lf
+*.command    text eol=lf
+*.bash       text eol=lf
+Makefile     text eol=lf
+*.bat        text eol=crlf
+*.cmd        text eol=crlf
+*.ps1        text eol=crlf
+*.psm1       text eol=crlf
+*.java       text eol=lf
+*.xml        text eol=lf
+*.properties text eol=lf
+*.bsh        text eol=lf
+*.sql        text eol=lf
+*.jrxml      text eol=lf
+*.xsd        text eol=lf
+*.ktr        text eol=lf
+*.form       text eol=lf
+*.md         text eol=lf
+*.template   text eol=lf
+*.jar  binary
+*.png  binary
+*.ico  binary
+*.icns binary
+*.ttf  binary
+*.rar  binary
+*.jpa  binary

@@ -1,0 +1,8 @@
+# printText(12, "slim", true, "TOTAL")   -- body only
+# Each run is self contained and self resetting: it turns its attributes on, prints,
+# and turns them off again. That is what makes these goldens stable.
+1B 45 01         # ESC E 1   emphasised (bold) on
+1B 2D 01         # ESC - 1   underline on, 1 dot thickness   ("slim")
+54 4F 54 41 4C   # "TOTAL"
+1B 2D 00         # ESC - 0   underline off
+1B 45 00         # ESC E 0   emphasised off

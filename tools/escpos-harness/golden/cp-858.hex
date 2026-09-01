@@ -1,0 +1,12 @@
+# FULL JOB. profile=epson, cp=858 (the default), cut=none, feed=0
+# body: printText(12, "none", false, "é")   -- a single e acute
+# The ESC t byte and the encoded text are asserted TOGETHER in one vector. A right bytes /
+# wrong ESC t pair is the classic "prints A-tilde-c instead of e acute" bug and is invisible
+# to any test that checks only the text bytes.
+1B 40      # ESC @      initialise
+1B 74 13   # ESC t 19   code page 19 = PC858 Euro
+1B 52 00   # ESC R 0    international character set 0
+1B 61 00   # ESC a 0    justification left
+1B 21 00   # ESC ! 0    print mode reset
+1D 61 00   # GS a 0     disable automatic status back
+82         # e acute at 0x82 in CP858 (encoder IBM00858)

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Pre-rendered ticket XML exercising the 42 column convention of every shipped template.
+
+  Line 1 has three runs summing to exactly 42 (20 + 10 + 12), one of them align="right",
+  and carries no bold attribute so the XSD default bold="false" is exercised too.
+  Line 2 is an empty spacer.
+  Line 3 is a size="1" line with two bold runs summing to 42 (30 + 12).
+
+  Six <text> elements means TicketParser fires cutPaper(true) six times, because
+  case "text": falls through into case "cutpaper:" with no break;. The receipt must
+  still be cut exactly once, at the end.
+
+  The <text> elements inside a <line> are kept strictly adjacent: no whitespace between
+  them, so the column arithmetic in the golden is obvious to a reviewer.
+
+  No <image>: the RESOURCES table is not available without a database, so printImage is
+  exercised directly instead. No Velocity directives and no ${...} references.
+-->
+<output>
+  <ticket>
+    <line><text length="20">ITEM</text><text length="10" align="center">QTY</text><text length="12" align="right">AMOUNT</text></line>
+    <line></line>
+    <line size="1"><text length="30" bold="true">TOTAL</text><text length="12" align="right" bold="true">42.00</text></line>
+  </ticket>
+</output>

@@ -14,3 +14,8 @@
 /export
 /installer
 /nbproject/private/
+
+# BIZAPP POS installer build output
+/build*/
+hs_err_pid*.log
+derby.log

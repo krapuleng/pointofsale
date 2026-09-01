@@ -1,0 +1,7 @@
+# beginReceipt + endReceipt, profile=generic, cp defaults to 437 for generic, cut=none, feed=0
+# profile=generic omits ESC R and GS a: both are absent from many sub-$60 ESC/POS clones,
+# where an unrecognised command prints as literal garbage.
+1B 40        # ESC @      initialise printer
+1B 74 00     # ESC t 0    select code page 0 = PC437 USA / Standard Europe
+1B 61 00     # ESC a 0    justification left
+1B 21 00     # ESC ! 0    print mode: font A, everything off

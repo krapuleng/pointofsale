@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Pre-rendered (post-Velocity) ticket XML, fed straight to
+  TicketParser.printTicket(Reader) so the end to end test needs no database and no
+  script engine. Validates against /com/nordpos/templates/Schema.Printer.xsd.
+
+  <opendrawer/> sits AFTER </ticket>, where TicketParser has returned to OUTPUT_NONE,
+  so the drawer kick is a second, separate job.
+-->
+<output>
+  <ticket>
+    <line><text bold="true">HELLO</text></line>
+  </ticket>
+  <opendrawer/>
+</output>

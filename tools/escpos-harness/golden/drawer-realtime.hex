@@ -1,0 +1,5 @@
+# openDrawer() standalone, drawer=realtime
+# The real time kick is processed ahead of the print buffer, which matters when a long
+# receipt is still spooling. It takes no pulse arguments.
+1B 40            # ESC @             initialise
+10 14 01 00 05   # DLE DC4 1 0 5     real time drawer kick, pin 2, on for 100 ms

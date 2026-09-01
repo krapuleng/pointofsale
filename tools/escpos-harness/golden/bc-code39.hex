@@ -1,0 +1,11 @@
+# printBarCode("CODE39", "bottom", "ABC-123")   -- body only
+# BarcodeString.getBarcodeStringCode39 keeps 0-9 A-Z $ % + - . / and replaces the rest
+# with '-'. "ABC-123" survives unchanged.
+1B 61 01   # ESC a 1    centre
+1D 48 02   # GS H 2     HRI below
+1D 66 00   # GS f 0     HRI font A
+1D 68 A2   # GS h 162   barcode height
+1D 77 03   # GS w 3     module width
+1D 6B 45 07   # GS k 69 7   symbology 69 = CODE39, 7 data bytes
+41 42 43 2D 31 32 33   # "ABC-123"
+1B 61 00   # ESC a 0    back to left

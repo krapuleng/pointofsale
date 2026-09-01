@@ -1,0 +1,4 @@
+# openDrawer() standalone, drawer=pin2, drawerpulse=100
+# t1 is the pulse in 2 ms units: 100 ms / 2 = 50 = 0x32.
+1B 40            # ESC @             initialise
+1B 70 00 32 FA   # ESC p 0 50 250    drawer kick, pin 2, 100 ms ON, 500 ms OFF

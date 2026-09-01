@@ -1,0 +1,5 @@
+# The SECOND job of the receipt-minimal case, 7 bytes: openDrawer() after endReceipt().
+# It is a separate job because Writter.flush() means "end of job, release the device":
+# on a socket that closes the connection, on a print queue that submits the document.
+1B 40            # ESC @             initialise
+1B 70 00 19 FA   # ESC p 0 25 250    drawer kick, pin 2, 50 ms pulse

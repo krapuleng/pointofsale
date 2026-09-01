@@ -1,0 +1,14 @@
+# THE ROLL SHREDDER TEST.
+# beginReceipt(); beginLine(0); cutPaper(true); printText(12,"none",false,"HELLO");
+# endLine(); endReceipt()   with the default cut=partial, feed=4   -- body only
+#
+# TicketParser.java case "text": falls through into case "cutpaper:" with no break;, so
+# cutPaper(true) fires before EVERY printText. Printer.Ticket.xml has 87 <text> elements
+# and not one <cutpaper/>. A driver that emitted on cutPaper() would cut the roll 87 times.
+# The driver ignores any cut that arrives while a line is open (per the XSD, <text> appears
+# only inside <line> and <cutpaper/> only as a direct child of <ticket>), and defers all
+# cuts to endReceipt. EXACTLY ONE cut appears below, at the end.
+48 45 4C 4C 4F   # "HELLO"
+0A               # LF
+1B 64 04         # ESC d 4   feed 4 lines
+1D 56 01         # GS V 1    the one and only cut

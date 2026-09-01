@@ -1,0 +1,15 @@
+# FULL JOB, 35 bytes. profile=epson, cp=858, cut=partial, feed=4 (every default).
+# beginReceipt(); beginLine(0); printText(12,"none",true,"HELLO"); endLine(); endReceipt()
+1B 40            # ESC @      initialise
+1B 74 13         # ESC t 19   code page 19 = PC858 Euro
+1B 52 00         # ESC R 0    international character set 0
+1B 61 00         # ESC a 0    justification left
+1B 21 00         # ESC ! 0    print mode reset
+1D 61 00         # GS a 0     disable automatic status back
+                 #            beginLine(0) emits nothing
+1B 45 01         # ESC E 1    bold on
+48 45 4C 4C 4F   # "HELLO"
+1B 45 00         # ESC E 0    bold off
+0A               # LF         endLine; line size is 0 so no GS ! follows
+1B 64 04         # ESC d 4    feed 4 lines
+1D 56 01         # GS V 1     partial cut

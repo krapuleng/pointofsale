@@ -1,0 +1,6 @@
+# printText(12, "none", false, "AB")   -- body only
+# TicketParser.parseInteger returns 12 on ANY parse failure, including the null it gets
+# for every <text> that carries no size attribute - which is essentially all of them.
+# Mapping 12 onto GS ! would select 5x character height on every ordinary line, so the
+# driver honours iCharacterSize ONLY for 0, 1, 2 and 3. Nothing is emitted here.
+41 42   # "AB"

@@ -1,0 +1,14 @@
+# printBarCode("EAN13", "bottom", "4006381333931")   -- body only
+# ESC a brackets the symbol because the printer, not TicketParser, positions a barcode.
+# The payload is normalised by com.nordpos.device.util.BarcodeString and encoded US-ASCII,
+# never the receipt code page, so the thermal symbol is identical to the screen preview.
+# getBarcodeStringEAN13 yields 12 digits - the printer computes the 13th check digit.
+1B 61 01   # ESC a 1    centre
+1D 48 02   # GS H 2     HRI characters below the barcode   ("bottom")
+1D 66 00   # GS f 0     HRI font A
+1D 68 A2   # GS h 162   barcode height in dots (bcheight default)
+1D 77 03   # GS w 3     module width (bcwidth default)
+1D 6B 43 0C   # GS k 67 12   function B (length prefixed), symbology 67 = EAN13, 12 data bytes
+34 30 30 36 33 38 31 33 33 33 39 33   # "400638133393"
+1B 61 00   # ESC a 0    back to left
+           # NOTE: no trailing LF. GS k already leaves the position on the next line.

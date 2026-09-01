@@ -1,0 +1,4 @@
+# beginReceipt(); endReceipt() with the default cut=partial, feed=4   -- body only
+# The cut is the DRIVER's policy, emitted once at endReceipt, never from cutPaper().
+1B 64 04   # ESC d 4   feed 4 lines, so the cut lands clear of the last printed line
+1D 56 01   # GS V 1    partial cut (a small tab is left, the operator tears it)

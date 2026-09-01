@@ -1,0 +1,3 @@
+# beginReceipt(); endReceipt() with cut=none, feed=4   -- body only
+# Feed still happens; only the cut is suppressed.
+1B 64 04   # ESC d 4   feed 4 lines

@@ -1,0 +1,3 @@
+# openDrawer() standalone, drawer=pin5
+1B 40         # ESC @       initialise
+1B 70 01 19 FA   # ESC p 1 25 250   drawer kick, connector pin 5

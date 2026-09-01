@@ -1,0 +1,9 @@
+# beginReceipt + endReceipt, profile=epson (default), cp=858 (default), cut=none, feed=0
+# This file is also the shared init prefix that every other body golden is measured after.
+1B 40        # ESC @      initialise printer, clears bold/underline/size latched by a previous job
+1B 74 13     # ESC t 19   select code page 19 = PC858 Euro
+1B 52 00     # ESC R 0    international character set 0 = U.S.A.        [profile=epson only]
+1B 61 00     # ESC a 0    justification left (images and barcodes re-centre themselves)
+1B 21 00     # ESC ! 0    print mode: font A, no emphasis, no double width/height, no underline
+1D 61 00     # GS a 0     disable automatic status back, so the printer never pushes
+             #            unread status bytes into a socket nobody drains  [profile=epson only]

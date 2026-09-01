@@ -1,0 +1,11 @@
+# FULL JOB. profile=epson, cp=437, cut=none, feed=0
+# body: printText(12, "none", false, "é")
+# CP437 and CP858 both place e acute at 0x82; the DISCRIMINATOR is the ESC t byte, which is
+# exactly why the two are asserted in the same vector.
+1B 40      # ESC @      initialise
+1B 74 00   # ESC t 0    code page 0 = PC437 USA / Standard Europe
+1B 52 00   # ESC R 0    international character set 0
+1B 61 00   # ESC a 0    justification left
+1B 21 00   # ESC ! 0    print mode reset
+1D 61 00   # GS a 0     disable automatic status back
+82         # e acute at 0x82 in CP437 (encoder IBM437)

@@ -1,0 +1,10 @@
+# printText(12, "thick",   false, "X")  followed by
+# printText(12, "average", false, "X")   -- body only
+# ESC/POS has exactly two underline thicknesses, so "average" and "thick" are identical
+# on thermal hardware. That is documented, not a bug.
+1B 2D 02   # ESC - 2   underline on, 2 dot thickness   ("thick")
+58         # "X"
+1B 2D 00   # ESC - 0   underline off
+1B 2D 02   # ESC - 2   underline on, 2 dot thickness   ("average" maps to the same byte)
+58         # "X"
+1B 2D 00   # ESC - 0   underline off

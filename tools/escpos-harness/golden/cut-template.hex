@@ -1,0 +1,5 @@
+# cut=template, and a GENUINE cutPaper(false) issued outside any open line   -- body only
+# cut=template is the opt in for anyone who wants the template's own <cutpaper/> elements
+# to drive the knife. complete=false selects a partial cut.
+1B 64 04   # ESC d 4   feed 4 lines
+1D 56 01   # GS V 1    partial cut, because cutPaper(complete=false) was recorded

@@ -1,0 +1,8 @@
+# printImage(a fully transparent 16 x 2 TYPE_INT_ARGB image)   -- body only
+# Alpha below 128 is treated as WHITE. Without that rule a transparent PNG logo prints
+# as a solid black box, because its RGB channels are all zero.
+1B 61 01                  # ESC a 1     centre
+1D 76 30 00 02 00 02 00   # GS v 0 0    2 bytes wide, 2 rows
+00 00                     # row 0: no dots
+00 00                     # row 1: no dots
+1B 61 00                  # ESC a 0     back to left

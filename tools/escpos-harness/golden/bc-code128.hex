@@ -1,0 +1,12 @@
+# printBarCode("CODE128", "bottom", "ABC")   -- body only
+# Function B CODE128 data must start with a code set selector. The driver prepends "{B"
+# and the length byte counts it.
+1B 61 01   # ESC a 1    centre
+1D 48 02   # GS H 2     HRI below
+1D 66 00   # GS f 0     HRI font A
+1D 68 A2   # GS h 162   barcode height
+1D 77 03   # GS w 3     module width
+1D 6B 49 05   # GS k 73 5   symbology 73 = CODE128, 5 data bytes
+7B 42      # "{B"   select code set B
+41 42 43   # "ABC"
+1B 61 00   # ESC a 0    back to left

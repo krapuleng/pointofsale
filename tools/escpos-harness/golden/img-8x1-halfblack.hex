@@ -1,0 +1,6 @@
+# printImage(an 8 x 1 image whose left 4 pixels are black)   -- body only
+# widthBytes = (8 + 7) / 8 = 1. Black sets bit (7 - x % 8), so x = 0..3 set bits 7..4.
+1B 61 01                  # ESC a 1     centre
+1D 76 30 00 01 00 01 00   # GS v 0 0    1 byte wide, 1 row
+F0                        # 1111 0000   left 4 dots black, right 4 white
+1B 61 00                  # ESC a 0     back to left

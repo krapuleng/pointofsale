@@ -1,0 +1,10 @@
+# beginReceipt + endReceipt, profile=epson, cp=858, logo=nv:1, cut=none, feed=0
+# The logo is a bitmap already stored in the printer's non volatile memory by the
+# vendor utility; the POS only names it.
+1B 40        # ESC @      initialise printer
+1B 74 13     # ESC t 19   code page 19 = PC858 Euro
+1B 52 00     # ESC R 0    international character set 0 = U.S.A.
+1B 61 00     # ESC a 0    justification left
+1B 21 00     # ESC ! 0    print mode reset
+1D 61 00     # GS a 0     disable automatic status back
+1C 70 01 00  # FS p 1 0   print NV bit image 1, mode 0 = normal scale   [logo=nv:1 only]

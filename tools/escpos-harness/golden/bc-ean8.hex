@@ -1,0 +1,10 @@
+# printBarCode("EAN8", "bottom", "12345678")   -- body only
+# getBarcodeStringEAN8 yields 7 digits - the printer computes the 8th check digit.
+1B 61 01   # ESC a 1    centre
+1D 48 02   # GS H 2     HRI below
+1D 66 00   # GS f 0     HRI font A
+1D 68 A2   # GS h 162   barcode height
+1D 77 03   # GS w 3     module width
+1D 6B 44 07   # GS k 68 7   symbology 68 = EAN8, 7 data bytes
+31 32 33 34 35 36 37   # "1234567"
+1B 61 00   # ESC a 0    back to left

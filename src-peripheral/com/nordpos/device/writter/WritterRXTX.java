@@ -42,14 +42,22 @@ public class WritterRXTX extends Writter {
     private final Integer m_iPortBits;
     private final Integer m_iPortStopBits;
     private final Integer m_iPortParity;
+    private final Integer m_iFlowControl;
     private OutputStream m_out;
 
     public WritterRXTX(String sPortPrinter, Integer iPortSpeed, Integer iPortBits, Integer iPortStopBits, Integer iPortParity) {
+        // SerialPort.FLOWCONTROL_NONE is a compile-time constant and is inlined
+        // by javac, so this delegation does not touch gnu.io at class load.
+        this(sPortPrinter, iPortSpeed, iPortBits, iPortStopBits, iPortParity, SerialPort.FLOWCONTROL_NONE);
+    }
+
+    public WritterRXTX(String sPortPrinter, Integer iPortSpeed, Integer iPortBits, Integer iPortStopBits, Integer iPortParity, Integer iFlowControl) {
         m_sPortPrinter = sPortPrinter;
         m_iPortSpeed = iPortSpeed;
         m_iPortBits = iPortBits;
         m_iPortStopBits = iPortStopBits;
         m_iPortParity = iPortParity;
+        m_iFlowControl = iFlowControl;
 
         m_out = null;
     }
@@ -65,11 +73,57 @@ public class WritterRXTX extends Writter {
 
                 if (m_PortIdPrinter.getPortType() == CommPortIdentifier.PORT_SERIAL) {
                     ((SerialPort) m_CommPortPrinter).setSerialPortParams(m_iPortSpeed, m_iPortBits, m_iPortStopBits, m_iPortParity); // Configuramos el puerto
+                    // Serial thermal printers that use XON/XOFF or RTS/CTS overflow
+                    // their buffer and drop mid-receipt without this.
+                    ((SerialPort) m_CommPortPrinter).setFlowControlMode(m_iFlowControl);
                 }
             }
             m_out.write(data);
+            // A customer display writes every 250 ms and never calls Writter.flush().
+            m_out.flush();
+            setLastError(null);
         } catch (NoSuchPortException | PortInUseException | UnsupportedCommOperationException | IOException e) {
-            logger.log(Level.SEVERE, e.getMessage(), e);
+            String sError = describe(e);
+            logger.log(Level.SEVERE, sError);
+            logger.log(Level.FINE, sError, e);
+            setLastError(sError);
+        } catch (RuntimeException | LinkageError e) {
+            // gnu.io's native loader can fail with an Error rather than an
+            // Exception; it must not escape the executor as a bare stack trace.
+            String sError = describe(e);
+            logger.log(Level.SEVERE, sError);
+            logger.log(Level.FINE, sError, e);
+            setLastError(sError);
+        }
+    }
+
+    /**
+     * gnu.io.NoSuchPortException carries a NULL message, so the text has to be
+     * built here rather than taken from the exception.
+     *
+     * @param e the failure
+     * @return actionable prose naming the port
+     */
+    private String describe(Throwable e) {
+        if (e instanceof NoSuchPortException) {
+            // Measured on this machine: on arm64 macOS the native never loads,
+            // yet getPortIdentifier() does not raise a LinkageError - it raises
+            // NoSuchPortException (with a null message), so "port not found"
+            // would be actively misleading about a port that is really there.
+            if (com.nordpos.device.util.SerialSupport.isAppleSilicon()) {
+                return com.nordpos.device.util.SerialSupport.getUnavailableMessage(m_sPortPrinter);
+            }
+            return "Serial port '" + m_sPortPrinter + "' was not found. "
+                    + com.nordpos.device.util.SerialSupport.getPortHint();
+        } else if (e instanceof PortInUseException) {
+            return "Serial port '" + m_sPortPrinter + "' is already in use by another program.";
+        } else if (e instanceof UnsupportedCommOperationException) {
+            return "Serial port '" + m_sPortPrinter + "' rejected the requested settings"
+                    + " (speed, data bits, stop bits, parity or flow control). Check them against the device manual.";
+        } else if (e instanceof LinkageError) {
+            return com.nordpos.device.util.SerialSupport.getUnavailableMessage(m_sPortPrinter);
+        } else {
+            return "Lost the connection to the device on serial port '" + m_sPortPrinter + "': " + e;
         }
     }
 

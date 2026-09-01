@@ -1,0 +1,25 @@
+# END TO END through the REAL com.nordpos.device.ticket.TicketParser, driving the REAL
+# ReceiptPrinterEmulator via machine.printer=escpos:network,127.0.0.1,<harness stub port>.
+# Fixture: fixtures/minimal-ticket.xml. This is JOB 0, the receipt; job 1 is the drawer
+# kick and is asserted against receipt-minimal-drawer.hex.
+#
+# Note what the parser does on the way here:
+#   <line>            -> beginLine(0)  (XSD default size="0")
+#   <text bold="true"> -> integerCharacterSize = 12 (the sentinel: <text> has no size default)
+#                      -> then FALLS THROUGH into case "cutpaper:" and fires cutPaper(true),
+#                         which the driver ignores because a line is open.
+#   </line>           -> endLine()
+#   </ticket>         -> endReceipt()
+# The result is byte identical to the hand built receipt-minimal.hex, which is the point.
+1B 40            # ESC @      initialise
+1B 74 13         # ESC t 19   code page 19 = PC858 Euro
+1B 52 00         # ESC R 0    international character set 0
+1B 61 00         # ESC a 0    justification left
+1B 21 00         # ESC ! 0    print mode reset
+1D 61 00         # GS a 0     disable automatic status back
+1B 45 01         # ESC E 1    bold on
+48 45 4C 4C 4F   # "HELLO"
+1B 45 00         # ESC E 0    bold off
+0A               # LF
+1B 64 04         # ESC d 4    feed 4 lines
+1D 56 01         # GS V 1     partial cut - EXACTLY ONE, despite the parser fall through

@@ -1,0 +1,4 @@
+# printText(12, "none", false, "HELLO")   -- body only, measured after the shared init block
+# 12 is TicketParser.parseInteger's sentinel for "no size attribute", so NO GS ! is emitted.
+# No ESC a either: TicketParser has already aligned and space padded the string in software.
+48 45 4C 4C 4F   # "HELLO", CP858

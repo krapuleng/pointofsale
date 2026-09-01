@@ -1,0 +1,9 @@
+# FULL JOB. profile=epson, cp=1252, cut=none, feed=0
+# body: printText(12, "none", false, "é")
+1B 40      # ESC @      initialise
+1B 74 10   # ESC t 16   code page 16 = WPC1252
+1B 52 00   # ESC R 0    international character set 0
+1B 61 00   # ESC a 0    justification left
+1B 21 00   # ESC ! 0    print mode reset
+1D 61 00   # GS a 0     disable automatic status back
+E9         # e acute at 0xE9 in windows-1252

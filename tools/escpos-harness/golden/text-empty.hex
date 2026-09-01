@@ -1,0 +1,4 @@
+# printText(12, "none", true, "")   -- body only
+# The shipped templates contain elements like <text length="17"></text>. Zero length
+# encoded text emits NOTHING AT ALL: no bold brackets wrapped around nothing.
+# This golden is deliberately empty.

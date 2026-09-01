@@ -1,0 +1,4 @@
+# beginLine(3); endLine()   -- body only
+1D 21 11   # GS ! 0x11   double width AND double height
+0A         # LF
+1D 21 00   # GS ! 0      clear character size AFTER the feed
